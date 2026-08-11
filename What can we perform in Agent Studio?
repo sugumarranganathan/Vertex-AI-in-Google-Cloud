@@ -1,0 +1,96 @@
+Under Agent Studio, you can mainly build, configure, test, and manage AI agents.
+
+🤖 What can we perform in Agent Studio?
+
+Create AI Agents
+Build an agent for a specific task.
+Example: Customer Support Agent, Travel Agent, Restaurant Agent.
+-----------
+
+Choose an AI Model
+Select models such as Gemini and other available models.
+The model acts as the agent's "brain."
+
+-------------
+
+Give the Agent Instructions
+Define what the agent should do and how it should behave.
+
+Example:
+
+"You are a travel assistant. Help users plan trips within their budget."
+
+--------------
+
+Connect Tools
+
+Give the agent tools it can use to perform actions.
+
+For example:
+
+Agent
+  ↓
+Search Tool
+  ↓
+Database
+  ↓
+API
+
+------------
+
+Connect Data / Knowledge
+
+Give the agent access to documents or other information.
+
+This is useful for RAG applications.
+
+=========
+
+Test the Agent
+Chat with the agent directly in Studio.
+Try different questions and see how it responds.
+
+=============
+
+Build Agent Workflows
+Define how the agent should reason, use tools, retrieve information, and respond.
+
+============
+
+Deploy the Agent
+Once the agent works correctly, you can make it available for an application or users.
+
+=========
+
+Simple example
+
+Suppose you create a Travel Agent:
+
+                 👤 User
+                    ↓
+              🤖 Travel Agent
+                    ↓
+              🧠 Gemini Model
+                    ↓
+       ┌────────────┼────────────┐
+       ↓            ↓            ↓
+   Hotel Tool    Flight Tool   Weather
+       ↓            ↓            ↓
+       └────────────┼────────────┘
+                    ↓
+             ✈️ Travel Plan
+
+The important difference from your previous Cloud Shell exercise is:
+
+=========
+
+Cloud Shell: You write Python code to tell Gemini what to do.
+
+Agent Studio: You can design an agent, give it instructions, connect models/tools/data, test it, and manage its workflow through the Google Cloud environment.
+
+For your AI Agent + RAG + MCP learning, Agent Studio is especially useful for understanding how a basic Gemini model becomes an AI agent that can use tools and data to accomplish a task.
+
+===========
+
+
+
