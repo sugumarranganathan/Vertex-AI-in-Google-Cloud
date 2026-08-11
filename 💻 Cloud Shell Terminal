@@ -5,3 +5,59 @@ It allows developers to write and run Python/code, install packages, manage file
 
 =============
 
+Think of it like this:
+
+Cloud Shell Terminal = 💻 Your workshop
+Agent Studio          = 🎨 Your AI design/testing workspace
+=======
+
+
+1. Cloud Shell Terminal
+
+This is basically a Linux terminal inside Google Cloud.
+
+---------------
+
+You were doing things like:
+
+pip install -U google-genai
+
+and:
+
+python test_gemini.py
+
+---------
+
+Your Python program then called:
+
+Python
+   ↓
+Google Gen AI SDK
+   ↓
+Vertex AI
+   ↓
+Gemini
+
+-----------
+
+What Cloud Shell is good for
+
+You can:
+
+Write Python programs
+Install Python packages
+Run scripts
+Create files
+Use Git
+Run gcloud commands
+Build APIs
+Build RAG applications
+Build AI agents
+Deploy applications
+
+So Cloud Shell is a developer environment.
+
+===========
+
+
+
