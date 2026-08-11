@@ -1,0 +1,99 @@
+https://console.cloud.google.com/agent-platform/evaluation?authuser=4&project=project-415b525b-5ad3-4185-aeb
+
+
+Google Cloud → Agent Platform → Models → Evaluation.
+
+What is this page?
+
+Gen AI Evaluation is used to test and measure how good an AI model or AI agent is before you use it in a real application.
+
+Think of it like an exam for your AI model:
+
+🤖 AI Model → Give it questions → Check its answers → Give scores → Compare models → Choose the better one
+
+What each part means
+
+| Screen item                    | Simple meaning                               |
+| ------------------------------ | -------------------------------------------- |
+| **New evaluation**             | Start a new AI evaluation/test               |
+| **Build datasets quickly**     | Create or upload questions/test data         |
+| **Metrics**                    | Decide how you will judge the AI             |
+| **AI-driven adaptive rubrics** | AI helps judge whether answers are good      |
+| **Static scoring**             | Use fixed rules/scores                       |
+| **Computational**              | Calculate measurable things such as accuracy |
+| **Define your own**            | Create your own evaluation criteria          |
+| **Iterate on results**         | Look at results and improve your model       |
+| **Choose with confidence**     | Select the model/agent that performs best    |
+
+
+=========
+
+Example
+
+Suppose you created a Restaurant AI Chatbot.
+
+You could create a test dataset:
+
+Question 1: What pizzas are available?
+Question 2: What is the price of Margherita pizza?
+Question 3: Do you provide home delivery?
+Question 4: What are your opening hours?
+
+Then your AI chatbot answers these questions.
+
+The Evaluation feature checks:
+
+Question
+   ↓
+AI Answer
+   ↓
+Evaluation
+   ↓
+Score
+   ↓
+Good / Bad
+
+For example:
+
+| Question                   | AI Answer         | Score |
+| -------------------------- | ----------------- | ----: |
+| What pizzas are available? | Correct list      |   95% |
+| Price of Margherita?       | Correct           |  100% |
+| Home delivery?             | Partially correct |   70% |
+| Opening hours?             | Wrong             |   20% |
+
+
+=======
+
+Then you can improve your chatbot.
+
+Why this is important for your AI Agent projects
+
+Since you're working with AI Agents, RAG and Agentic AI, evaluation becomes very useful.
+
+For example:
+
+RAG chatbot
+
+PDF / Documents
+       ↓
+     RAG
+       ↓
+   AI Answer
+       ↓
+  Evaluation
+       ↓
+Faithfulness
+Correctness
+Relevance
+       ↓
+    Score
+
+So, Evaluation does not create the AI model.
+
+It helps you answer:
+
+"How well is my AI model/agent actually performing?"
+
+=========
+
