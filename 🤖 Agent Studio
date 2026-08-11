@@ -4,3 +4,33 @@ Agent Studio is a visual workspace in Google Cloud for designing, building, test
 It allows you to configure agents, connect models and tools, and experiment with agent workflows with less manual coding.
 
 ========
+
+Agent Studio
+------------
+
+Agent Studio is more focused on building and experimenting with AI agents and applications through a visual interface.
+
+Instead of writing everything from scratch in Python, you can use the Google Cloud interface to design/test an agent.
+
+Conceptually:
+
+                 Agent Studio
+                      ↓
+             ┌─────────────────┐
+             │      Agent      │
+             └────────┬────────┘
+                      ↓
+                 Gemini/LLM
+                      ↓
+             ┌────────┼────────┐
+             ↓        ↓        ↓
+           Tools     Data     Actions
+
+Google describes Agent Studio as a visual environment for designing and building agents.
+
+
+==============
+
+The biggest difference
+----------------------
+
