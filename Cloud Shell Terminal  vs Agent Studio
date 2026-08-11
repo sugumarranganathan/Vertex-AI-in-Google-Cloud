@@ -1,0 +1,172 @@
+Cloud Shell Terminal  vs Agent Studio
+-------------------------------------
+
+| Cloud Shell Terminal     | Agent Studio                        |
+| ------------------------ | ----------------------------------- |
+| 💻 Developer environment | 🎨 AI/Agent development workspace   |
+| Mainly command line      | Mainly visual/UI                    |
+| Write Python code        | Configure/design agents             |
+| Run scripts              | Test/design AI applications         |
+| Install packages         | Work with available AI capabilities |
+| `python app.py`          | Build/test agent workflows          |
+| `gcloud` commands        | Agent configuration                 |
+| Full programming control | Easier agent experimentation        |
+| Great for developers     | Great for prototyping agents        |
+
+
+==========
+
+Example: Build a customer-support AI
+Using Cloud Shell
+--------------
+
+You might write:
+
+---------
+from google import genai
+
+client = genai.Client(...)
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Answer this customer question..."
+)
+
+print(response.text)
+-------------
+
+You control the entire application.
+
+You can add:
+
+Python
+ ↓
+RAG
+ ↓
+FAISS
+ ↓
+Gemini
+ ↓
+Tools
+ ↓
+Database
+ ↓
+API
+
+=============
+
+Using Agent Studio
+
+You can work more visually:
+
+User
+ ↓
+Agent
+ ↓
+Gemini
+ ↓
+Knowledge / Tools
+ ↓
+Response
+
+You configure the agent and test its behavior without having to write every component yourself.
+
+==================
+
+A very important point for YOUR learning
+
+You might wonder:
+
+"If I can call Gemini using Python from Cloud Shell, why should I learn Agent Studio?"
+
+Because you're learning AI Agents and Agentic AI, not only Gemini API usage.
+
+You can think of your learning progression as:
+
+                    Gemini
+                      │
+             ┌────────┴────────┐
+             ↓                 ↓
+       Cloud Shell        Agent Studio
+             │                 │
+             ↓                 ↓
+      Python coding       Visual agent
+             │                 │
+             ↓                 ↓
+        RAG / Tools       Agent design
+             │                 │
+             └────────┬────────┘
+                      ↓
+                 AI AGENT
+                      ↓
+                Agentic AI
+                      ↓
+                    MCP
+
+=====
+
+One simple analogy
+
+Imagine you're building a house.
+
+Cloud Shell is like your toolbox + workshop:
+
+Hammer, drill, saw, materials — you build everything yourself.
+
+Agent Studio is like an architect's design workspace:
+
+You design the structure, connect components, test the design, and manage the agent.
+
+Both are useful.
+
+========
+
+And there's another important difference
+
+The Python program we just created was essentially:
+
+"Gemini, answer this question."
+
+That's a model interaction.
+
+An AI Agent is more like:
+
+"Understand the user's goal, decide what to do, use the appropriate tools/data, and complete the task."
+
+For example:
+
+User:
+"Find the best hotel in Chennai under ₹3,000."
+
+             ↓
+
+          AI Agent
+             ↓
+      Understand request
+             ↓
+       Search hotel data
+             ↓
+        Compare prices
+             ↓
+       Apply conditions
+             ↓
+       Select options
+             ↓
+          Response
+
+That's where Agent Studio becomes particularly interesting for your course.
+
+=========
+
+In short
+
+Cloud Shell = where you write and run the code.
+
+Agent Studio = where you can visually build, configure, and experiment with AI agents.
+
+And Vertex AI/Agent Platform is the overall Google Cloud environment providing the models and services underneath.
+
+==========
+
+
+
