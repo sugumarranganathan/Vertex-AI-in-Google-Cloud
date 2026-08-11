@@ -1,0 +1,68 @@
+Google Cloud Shell itself is free for normal usage. The confusion usually comes from Google Cloud services used from Cloud Shell, which can cost money.
+
+💻 Cloud Shell itself
+
+Google provides a Cloud Shell environment at no additional charge for users. It gives you a temporary VM-like environment with tools such as:
+
+Linux terminal
+gcloud
+Python
+Git
+Basic storage/home directory
+
+So:
+
+Cloud Shell = Free ✅
+
+=========
+
+💰 But the commands you run can use paid services
+
+For example:
+
+Cloud Shell
+    ↓
+Python program
+    ↓
+Vertex AI
+    ↓
+Gemini
+
+Cloud Shell → generally free
+Vertex AI / Gemini API usage → may consume your Google Cloud credits and can become billable depending on the service/model and billing status.
+
+Similarly:
+
+Cloud Shell
+    ↓
+Cloud Storage
+
+Storage can have charges depending on usage.
+
+========
+
+Why did you see a billing/free-trial page?
+
+Because Cloud Shell is part of Google Cloud, and Google Cloud uses a billing account for many services.
+
+Your Free Trial gives you credits that can be used for eligible Google Cloud services.
+
+Think of it like:
+
+🏠 Cloud Shell = free workspace
+🛠️ Google Cloud services = tools you may pay for depending on usage
+
+For your current project
+
+You successfully ran:
+
+python test_gemini.py
+
+and Gemini returned a response.
+
+The Cloud Shell environment wasn't what consumed your main credit; the Vertex AI/Gemini service usage is the part you should pay attention to.
+
+Also, keep an eye on your Google Cloud Billing / Credits page so you can see whether your usage is consuming the trial credit.
+
+===========
+
