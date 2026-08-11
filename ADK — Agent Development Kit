@@ -1,0 +1,210 @@
+🤖 ADK — Agent Development Kit
+
+ADK stands for Agent Development Kit.
+
+In simple words:
+
+ADK is Google's framework for building AI Agents using code.
+
+Instead of creating a normal chatbot that only answers questions, ADK helps you build an AI agent that can think about a task, use tools, call other agents, remember information, and complete the task.
+
+🧒 Simple example
+
+Imagine you ask:
+
+"Find me a good hotel in Chennai for tomorrow and tell me the price."
+
+A normal chatbot may simply give you information it already knows.
+
+An ADK Agent can be designed to:
+
+User
+  ↓
+ADK AI Agent
+  ↓
+Understand request
+  ↓
+Use hotel-search tool
+  ↓
+Get hotel information
+  ↓
+Compare prices
+  ↓
+Give recommendation
+
+So the important idea is:
+
+LLM + Instructions + Tools + Agent logic = AI Agent
+
+==========
+
+
+🔧 ADK Example
+
+Suppose you want to create a Business Consultant Agent.
+
+User says:
+
+"My textile shop sales decreased by 20%. Analyze the problem and suggest what I should do."
+
+Your ADK agent could have tools like:
+
+Business Consultant Agent
+        │
+        ├── Sales Analysis Tool
+        │
+        ├── Market Research Tool
+        │
+        ├── Profit Calculator
+        │
+        └── Report Generator
+
+The agent decides which tool to use.
+
+For example:
+
+User
+ ↓
+"Sales decreased by 20%"
+ ↓
+Business Consultant Agent
+ ↓
+Sales Analysis Tool
+ ↓
+Market Research Tool
+ ↓
+Profit Calculator
+ ↓
+AI analyzes results
+ ↓
+Business Recommendation
+
+==========
+
+🐍 Very Simple ADK Code
+
+A basic ADK agent can look conceptually like this:
+
+from google.adk.agents import Agent
+
+root_agent = Agent(
+    name="business_consultant",
+    model="gemini-2.5-flash",
+    instruction="""
+    You are a business consultant.
+    Analyze business problems and provide
+    practical recommendations.
+    """
+)
+
+Here:
+
+| Code          | Meaning                              |
+| ------------- | ------------------------------------ |
+| `Agent()`     | Creates an AI Agent                  |
+| `name`        | Name of your agent                   |
+| `model`       | LLM used by the agent                |
+| `instruction` | Tells the agent what role to perform |
+| `root_agent`  | Main/starting agent                  |
+
+
+=========
+
+🛠️ ADK becomes powerful when you add Tools
+
+For example:
+
+from google.adk.agents import Agent
+
+def calculate_profit(revenue, cost):
+    return revenue - cost
+
+root_agent = Agent(
+    name="business_consultant",
+    model="gemini-2.5-flash",
+    instruction="""
+    You are a business consultant.
+    Analyze sales and profit problems.
+    Use the profit calculator when necessary.
+    """,
+    tools=[calculate_profit]
+)
+
+Now the agent can decide:
+
+"I need to calculate profit."
+
+and call:
+
+calculate_profit()
+
+rather than simply guessing the answer.
+
+=========
+
+🤖 ADK and Multi-Agent
+
+This is where ADK becomes especially interesting for Agentic AI.
+
+You can create multiple specialized agents:
+
+                 Main Agent
+                     │
+        ┌────────────┼────────────┐
+        ↓            ↓            ↓
+   Sales Agent   Marketing Agent  Finance Agent
+        │            │            │
+        ↓            ↓            ↓
+   Sales Data    Market Data    Profit Data
+        └────────────┼────────────┘
+                     ↓
+               Final Report
+
+For example:
+
+User:
+
+"Should I expand my textile business?"
+
+The main agent could delegate:
+
+Sales Agent
+→ analyzes sales
+
+Finance Agent
+→ analyzes profit/cash flow
+
+Marketing Agent
+→ analyzes market opportunities
+
+Then the main agent combines everything:
+
+"Based on sales, financial health and market demand, expansion is recommended."
+
+=========
+
+ADK is Google's developer framework for building, orchestrating, testing, and deploying AI agents that can use models, tools, and other agents to accomplish tasks.
+
+For your current Vertex AI / Google Cloud learning, think of the relationship as:
+
+Google Cloud
+     ↓
+Agent Platform
+     ↓
+ADK
+     ↓
+Build AI Agents
+     ↓
+Tools + RAG + Multi-Agent
+     ↓
+Evaluation
+     ↓
+Deployment
+     ↓
+Monitoring
+
+So ADK is the "development kit" you use to actually build the AI Agent, while Agent Platform is the broader Google Cloud environment 
+where you can develop, evaluate, deploy, and operate those agents.
+
+
+==========
