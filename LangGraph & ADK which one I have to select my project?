@@ -1,0 +1,33 @@
+LangGraph will teach  the fundamental idea of agent orchestration and stateful workflows.
+
+Then ADK will show how to build agents in the Google/Gemini ecosystem.
+
+===========
+
+
+LangGraph & ADK which one I have to select my project?
+
+
+| Your project requirement        | Choose                   |
+| ------------------------------- | ------------------------ |
+| Simple chatbot                  | Neither may be necessary |
+| RAG chatbot                     | RAG framework/library    |
+| One AI Agent + tools            | **ADK or LangGraph**     |
+| Complex conditional workflow    | 🟢 **LangGraph**         |
+| Many workflow branches/loops    | 🟢 **LangGraph**         |
+| Multi-agent system              | 🟢 **Either**            |
+| Gemini + Google Cloud           | 🔵 **ADK**               |
+| Vertex AI / Agent Platform      | 🔵 **ADK**               |
+| Google Cloud deployment focus   | 🔵 **ADK**               |
+| Need maximum workflow control   | 🟢 **LangGraph**         |
+| Need model/provider flexibility | 🟢 **LangGraph**         |
+
+
+=============
+
+LangGraph is excellent when the workflow is the main thing you want to control;
+
+ADK is excellent when the agent ecosystem and Google Cloud/Gemini integration are the main things you want to build around.
+
+==========
+
