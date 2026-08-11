@@ -1,0 +1,56 @@
+Google Cloud Agent Platform — Services
+
+
+|  # | Service                    | Simple Meaning                 | What you use it for                                                 |
+| -: | -------------------------- | ------------------------------ | ------------------------------------------------------------------- |
+|  1 | **Model Garden**           | Collection of AI models        | Find and use models such as **Gemma, Gemini and other models**      |
+|  2 | **Tuning**                 | Customize an AI model          | Fine-tune/adapt a model for a specific task                         |
+|  3 | **Evaluation**             | Test AI quality                | Check whether your AI model/agent gives good answers                |
+|  4 | **Model Registry**         | Model storage/catalog          | Manage and track your AI/ML models                                  |
+|  5 | **Endpoints**              | AI model access point          | Deploy a model so applications can send requests to it              |
+|  6 | **Batch Inference**        | Process many requests together | Generate predictions for a large amount of data                     |
+|  7 | **Provisioned Throughput** | Reserved AI capacity           | Get predictable AI processing capacity for production               |
+|  8 | **Datasets**               | Store/manage training data     | Prepare and manage datasets for AI/ML                               |
+|  9 | **Feature Store**          | Store ML features              | Store and reuse important input features for ML models              |
+| 10 | **Experiments**            | Track ML experiments           | Compare different models, parameters and results                    |
+| 11 | **Training**               | Train ML models                | Build/train machine-learning models                                 |
+| 12 | **Ray on Agent Platform**  | Distributed AI/ML computing    | Run scalable Python/AI workloads using Ray                          |
+| 13 | **Pipelines**              | Automate ML workflows          | Connect steps such as data → training → evaluation → deployment     |
+| 14 | **Metadata**               | Track ML information           | Keep information about datasets, models, runs and pipelines         |
+| 15 | **Monitoring**             | Watch deployed AI systems      | Monitor performance, errors and changes in production               |
+| 16 | **Get API key**            | Get an API key                 | Allow applications to communicate with supported Google AI services |
+| 17 | **Tutorials**              | Learning resources             | Follow Google Cloud tutorials and hands-on examples                 |
+
+
+===========
+
+Easy way to remember the whole flow
+
+Think of building an AI application like building a student:
+
+| Stage                | Google Cloud service         | Student example                      |
+| -------------------- | ---------------------------- | ------------------------------------ |
+| 📚 Find a model      | **Model Garden**             | Choose a teacher/book                |
+| 🎯 Customize         | **Tuning**                   | Teach the student a specific subject |
+| 📝 Test              | **Evaluation**               | Conduct an exam                      |
+| 🗂️ Store model      | **Model Registry**           | Keep the student's records           |
+| 🚀 Deploy            | **Endpoints**                | Student starts working               |
+| 📊 Monitor           | **Monitoring**               | Check performance                    |
+| 🔄 Improve           | **Experiments / Training**   | Practice and improve                 |
+| ⚙️ Automate          | **Pipelines**                | Create an automatic study process    |
+| 💾 Manage data       | **Datasets / Feature Store** | Manage study materials               |
+| 🧾 Track information | **Metadata**                 | Maintain records                     |
+
+
+==========
+
+Model Garden → Evaluation → Endpoints → Monitoring → Pipelines
+
+And for your Agentic AI / RAG projects:
+
+Model → RAG/Data → Agent → Evaluation → Deployment → Monitoring
+
+This will give you a strong practical understanding of the Google Cloud AI workflow.
+
+
+===========
