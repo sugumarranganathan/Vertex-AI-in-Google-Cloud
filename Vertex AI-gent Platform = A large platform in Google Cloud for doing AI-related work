@@ -1,0 +1,28 @@
+Vertex AI / Agent Platform
+
+“Vertex AI / Agent Platform is a complete AI environment within Google Cloud. It provides various services and tools needed to build, deploy, and use AI models and AI applications.”
+
+Simply:
+
+Vertex AI / Agent Platform = A large platform in Google Cloud for doing AI-related work.
+----------------------------------------------------------------------------------------
+
+
+It includes:
+
+🤖 AI Models — Models such as Gemini
+🧠 Agents — Build AI agents
+🎨 Studio — Build and test AI/Agents
+💻 Notebooks / Cloud Shell — Write and run code
+🔍 RAG / Search — Connect AI with your data
+🚀 Deployment — Deploy AI applications
+
+================
+
+In one line:
+
+Cloud Shell = Place to write and run code
+Agent Studio = Place to build AI Agents
+Vertex AI / Agent Platform = The larger Google Cloud platform that provides these and many other AI services.
+
+===============
