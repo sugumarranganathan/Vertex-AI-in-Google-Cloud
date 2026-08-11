@@ -1,0 +1,107 @@
+Vertex AI is Google's all-in-one AI platform for building, deploying, and managing both traditional machine learning models and modern generative AI applications on Google Cloud.
+
+
+Vertex AI is Google's managed artificial intelligence platform on Google Cloud. It provides a single environment to build, train, deploy, and manage machine learning (ML) models and generative AI applications.
+
+Think of it as a toolkit that helps developers and data scientists create AI-powered applications without having to manage all the underlying infrastructure.
+
+What you can do with Vertex AI
+---------------------------------
+
+Build custom machine learning models
+
+Train models using your own data.
+Use frameworks like TensorFlow, PyTorch, and scikit-learn.
+
+------------
+
+Use Google's foundation models
+
+Access Gemini models for:
+Text generation
+Image generation
+Code generation
+Chatbots
+Document understanding
+
+============
+
+Fine-tune models
+Customize foundation models using your organization's data.
+
+============
+
+Deploy models
+Host models as scalable APIs.
+Automatically handle traffic and scaling.
+
+============
+
+Monitor models
+Track performance, accuracy, latency, and drift after deployment.
+
+============================================
+
+Example workflow
+
+Suppose you're building a customer support chatbot:
+
+Upload your company documents.
+
+Use Vertex AI with a Gemini model.
+Create a chatbot that answers customer questions.
+Deploy it as an API.
+Monitor usage and improve responses over time.
+
+======
+
+Key components
+
+| Feature          | Purpose                                                 |
+| ---------------- | ------------------------------------------------------- |
+| Model Garden     | Browse and use Google's and third-party AI models       |
+| Gemini API       | Access Google's generative AI models                    |
+| Vertex AI Studio | Build and test prompts without writing much code        |
+| AutoML           | Train models with little or no ML expertise             |
+| Pipelines        | Automate ML workflows                                   |
+| Vector Search    | Build retrieval-augmented generation (RAG) applications |
+
+
+========
+
+Who uses Vertex AI?
+
+Software developers
+Machine learning engineers
+Data scientists
+Enterprises building AI-powered products
+
+========
+
+Vertex AI vs. ChatGPT API
+
+| Vertex AI                                                                     | ChatGPT API                                                         |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Runs on Google Cloud                                                          | Runs on OpenAI's platform                                           |
+| Access to Gemini models                                                       | Access to GPT models                                                |
+| Strong integration with Google Cloud services (BigQuery, Cloud Storage, etc.) | Strong integration with OpenAI ecosystem and many third-party tools |
+| Built for end-to-end ML lifecycle as well as generative AI                    | Primarily focused on AI model APIs and assistants                   |
+
+
+==========
+
+Common use cases
+AI chatbots
+Document summarization
+Code assistants
+Image generation
+Recommendation systems
+Fraud detection
+Predictive analytics
+Intelligent search over company documents (RAG)
+
+In short, Vertex AI is Google's all-in-one AI platform for building, deploying, and managing both traditional machine learning models
+and modern generative AI applications on Google Cloud.
+
+===========
+
