@@ -1,0 +1,71 @@
+/business_consultant_agent
+
+This folder contains:
+
+agent.py
+deploy.py
+__init__.py
+__pycache__
+requirements.txt
+
+Since you do not want to add another agent and your AI agent is already working, don't do anything in this folder now.
+
+You need to go to your website project folder:
+
+cd ~/business-consultant-web
+
+Then check the files:
+
+ls
+
+You should see something similar to:
+
+app.py
+templates
+requirements.txt
+
+Run these two commands:
+
+cd ~/business-consultant-web
+ls
+
+======
+
+Perfect 👍 You are now in the correct folder:
+
+~/business-consultant-web
+
+And you have:
+
+app.py
+templates/
+Next step: Create requirements.txt
+
+For Cloud Run deployment, run this command:
+
+nano requirements.txt
+
+Paste this:
+
+Flask
+requests
+gunicorn
+
+Then save:
+
+Ctrl + O
+Press Enter
+Ctrl + X
+
+Now verify:
+
+cat requirements.txt
+
+It should show:
+
+Flask
+requests
+gunicorn
+
+====
+
