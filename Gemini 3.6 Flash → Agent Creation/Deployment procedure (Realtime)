@@ -69,3 +69,1283 @@ gunicorn
 
 ====
 
+Step 2: Deploy to Cloud Run
+
+Run this command exactly from:
+
+~/business-consultant-web
+gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+When it asks:
+
+Enable Artifact Registry API?
+
+Type:
+
+y
+
+Press Enter.
+
+If it asks any other confirmation such as enabling an API, type:
+
+y
+
+and press Enter.
+
+After deployment completes, you will get:
+
+Service URL: https://business-consultant-ai-xxxxxxxxxx.run.app
+
+🎉 That will be your public Business Consultant AI website URL.
+
+Copy the complete final output or send me a screenshot after the command finishes. Then I will help you test the public website.
+
+========
+
+Perfect 👍 You are at the confirmation step.
+
+It says:
+
+Do you want to continue (Y/n)?
+
+Type:
+
+Y
+
+and press Enter.
+
+Google Cloud will create the Artifact Registry repository and continue building and deploying your Flask website to Cloud Run.
+
+Wait until the command finishes. At the end, you should see something like:
+
+Service URL: https://business-consultant-ai-xxxxx.run.app
+
+Copy the final output or send me the next screenshot.
+
+=========
+
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+The following APIs are not enabled on project [project-415b525b-5ad3-4185-aeb]:
+        artifactregistry.googleapis.com
+        cloudbuild.googleapis.com
+        run.googleapis.com
+
+Do you want enable these APIs to continue (this will take a few minutes)? (Y/n)?  Y
+
+Enabling APIs on project [project-415b525b-5ad3-4185-aeb]...
+Operation "operations/acf.p2-93864197382-86b87516-5816-4daa-9c9b-8ccf8a3f5748" finished successfully.
+Deploying from source requires an Artifact Registry Docker repository to store built containers. A repository named [cloud-run-source-deploy] in region [asia-south1] will
+ be created.
+
+Do you want to continue (Y/n)?  Y
+
+Building using Buildpacks and deploying container to Cloud Run service [business-consultant-ai] in project [project-415b525b-5ad3-4185-aeb] region [asia-south1]
+Building and deploying new service...                                                                                                                                    
+  Validating configuration...done                                                                                                                                        
+  Creating Container Repository...done                                                                                                                                   
+  Uploading sources...failed                                                                                                                                             
+Deployment failed                                                                                                                                                        
+ERROR: (gcloud.run.deploy) INVALID_ARGUMENT: Invalid build request. could not resolve source: googleapi: Error 403: 93864197382-compute@developer.gserviceaccount.com does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource '//storage.googleapis.com/projects/_/buckets/run-sources-project-415b525b-5ad3-4185-aeb-asia-south1/objects/services/business-consultant-ai/1786546727.069656-3319b4ef88d34d2c85cc74d37d8bf9f3.zip' (or it may not exist). Remediate access with this Troubleshooter URL or share it with your administrator - https://console.cloud.google.com/iam-admin/troubleshooter/summary;errorId=CiQwMTlmZjY3Yi1iNzA2LTdlYmItYTQ3OC1jODk0OTBjMGNiZWESqAFwcm9qZWN0cy9fL2J1Y2tldHMvcnVuLXNvdXJjZXMtcHJvamVjdC00MTViNTI1Yi01YWQzLTQxODUtYWViLWFzaWEtc291dGgxL29iamVjdHMvc2VydmljZXMvYnVzaW5lc3MtY29uc3VsdGFudC1haS8xNzg2NTQ2NzI3LjA2OTY1Ni0zMzE5YjRlZjg4ZDM0ZDJjODVjYzc0ZDM3ZDhiZjlmMy56aXA%3D ., forbidden
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ 
+
+============
+
+The problem is clear 👍 Your Flask code is not the issue.
+
+Cloud Run deployment failed because the Compute Engine service account does not have permission to read the source files from Cloud Storage.
+
+The error shows this service account:
+
+93864197382-compute@developer.gserviceaccount.com
+Step 1: Give Storage permission
+
+Run this exact command:
+
+gcloud projects add-iam-policy-binding project-415b525b-5ad3-4185-aeb \
+  --member="serviceAccount:93864197382-compute@developer.gserviceaccount.com" \
+  --role="roles/storage.objectViewer"
+
+Wait until you get a successful IAM policy update.
+
+=========
+
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud projects add-iam-policy-binding project-415b525b-5ad3-4185-aeb \
+  --member="serviceAccount:93864197382-compute@developer.gserviceaccount.com" \
+  --role="roles/storage.objectViewer"
+Updated IAM policy for project [project-415b525b-5ad3-4185-aeb].
+bindings:
+- members:
+  - principalSet://agents.global.org-501807723039.system.id.goog/attribute.platformContainer/aiplatform/projects/93864197382
+  role: roles/aiplatform.agentDefaultAccess
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-aiplatform-cc.iam.gserviceaccount.com
+  role: roles/aiplatform.customCodeServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-vertex-eval.iam.gserviceaccount.com
+  role: roles/aiplatform.rapidevalServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-aiplatform-re.iam.gserviceaccount.com
+  role: roles/aiplatform.reasoningEngineServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-aiplatform.iam.gserviceaccount.com
+  role: roles/aiplatform.serviceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-vertex-telemetry.iam.gserviceaccount.com
+  role: roles/aiplatform.telemetryServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-artifactregistry.iam.gserviceaccount.com
+  role: roles/artifactregistry.serviceAgent
+- members:
+  - serviceAccount:93864197382@cloudbuild.gserviceaccount.com
+  role: roles/cloudbuild.builds.builder
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-cloudbuild.iam.gserviceaccount.com
+  role: roles/cloudbuild.serviceAgent
+- members:
+  - serviceAccount:93864197382@cloudservices.gserviceaccount.com
+  role: roles/compute.instanceGroupManagerServiceAgent
+- members:
+  - serviceAccount:service-93864197382@compute-system.iam.gserviceaccount.com
+  role: roles/compute.serviceAgent
+- members:
+  - serviceAccount:service-93864197382@containerregistry.iam.gserviceaccount.com
+  role: roles/containerregistry.ServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-notebooks.iam.gserviceaccount.com
+  role: roles/notebooks.serviceAgent
+- members:
+  - user:sugumarranganathan54@gmail.com
+  role: roles/owner
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-pubsub.iam.gserviceaccount.com
+  role: roles/pubsub.serviceAgent
+- members:
+  - serviceAccount:service-93864197382@serverless-robot-prod.iam.gserviceaccount.com
+  role: roles/run.serviceAgent
+- members:
+  - serviceAccount:93864197382-compute@developer.gserviceaccount.com
+  role: roles/storage.objectViewer
+etag: BwZY2tnQ4NA=
+version: 1
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ 
+
+===============
+
+Perfect 👍 The Storage permission problem is fixed.
+
+Now simply run the Cloud Run deployment command again.
+
+Step 1: Make sure you are in this folder
+cd ~/business-consultant-web
+Step 2: Deploy again
+
+Copy and run:
+
+gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+Step 3: Wait
+
+Cloud Run will now:
+
+Upload your source code
+Build the container
+Deploy your Flask application
+Create a public URL
+
+At the end, you should see something similar to:
+
+Service [business-consultant-ai] revision [...] has been deployed
+
+Service URL:
+https://business-consultant-ai-xxxxx.asia-south1.run.app
+
+Copy the complete output or screenshot and send it to me. Then we will test your public Business Consultant AI website 🚀
+
+=============
+
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+Building using Buildpacks and deploying container to Cloud Run service [business-consultant-ai] in project [project-415b525b-5ad3-4185-aeb] region [asia-south1]
+Building and deploying new service...                                                                                                                                    
+  Validating configuration...done                                                                                                                                        
+  Uploading sources...done                                                                                                                                               
+  Building Container... Logs are available at [ https://console.cloud.google.com/cloud-build/builds;region=asia-south1/8bbbacdf-3201-4972-a49f-418ba622fb4d?project=93864
+  197382 ]....failed                                                                                                                                                     
+Deployment failed                                                                                                                                                        
+ERROR: (gcloud.run.deploy) Build failed; check build logs for details
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ 
+
+===========
+
+our permission issue is fixed because the source was uploaded successfully. Now the failure is happening during the Cloud Build process.
+
+Next step: check the exact build error
+
+Copy and run this command:
+
+gcloud builds log 8bbbacfd-3201-4972-a9af-418ba622fbd4 \
+--region=asia-south1
+
+Wait until the complete error appears.
+
+Important
+
+Do not change your Agent Engine or deployed AI agent. Your agent is already working. We are only fixing the Cloud Run web application build.
+
+After running the command, send me a screenshot of the last error lines. Then I will give you the exact next command.
+
+=============
+
+our Cloud Build service account cannot write logs
+
+Your output clearly says:
+
+does not have permission to write logs to Cloud Logging
+
+Run this:
+
+gcloud projects add-iam-policy-binding project-415b525b-5ad3-4185-aeb \
+  --member="serviceAccount:93864197382-compute@developer.gserviceaccount.com" \
+  --role="roles/logging.logWriter"
+
+Wait until it says:
+
+Updated IAM policy
+
+=========
+
+ugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud projects add-iam-policy-binding project-415b525b-5ad3-4185-aeb \
+  --member="serviceAccount:93864197382-compute@developer.gserviceaccount.com" \
+  --role="roles/logging.logWriter"
+Updated IAM policy for project [project-415b525b-5ad3-4185-aeb].
+bindings:
+- members:
+  - principalSet://agents.global.org-501807723039.system.id.goog/attribute.platformContainer/aiplatform/projects/93864197382
+  role: roles/aiplatform.agentDefaultAccess
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-aiplatform-cc.iam.gserviceaccount.com
+  role: roles/aiplatform.customCodeServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-vertex-eval.iam.gserviceaccount.com
+  role: roles/aiplatform.rapidevalServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-aiplatform-re.iam.gserviceaccount.com
+  role: roles/aiplatform.reasoningEngineServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-aiplatform.iam.gserviceaccount.com
+  role: roles/aiplatform.serviceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-vertex-telemetry.iam.gserviceaccount.com
+  role: roles/aiplatform.telemetryServiceAgent
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-artifactregistry.iam.gserviceaccount.com
+  role: roles/artifactregistry.serviceAgent
+- members:
+  - serviceAccount:93864197382@cloudbuild.gserviceaccount.com
+  role: roles/cloudbuild.builds.builder
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-cloudbuild.iam.gserviceaccount.com
+  role: roles/cloudbuild.serviceAgent
+- members:
+  - serviceAccount:93864197382@cloudservices.gserviceaccount.com
+  role: roles/compute.instanceGroupManagerServiceAgent
+- members:
+  - serviceAccount:service-93864197382@compute-system.iam.gserviceaccount.com
+  role: roles/compute.serviceAgent
+- members:
+  - serviceAccount:service-93864197382@containerregistry.iam.gserviceaccount.com
+  role: roles/containerregistry.ServiceAgent
+- members:
+  - serviceAccount:93864197382-compute@developer.gserviceaccount.com
+  role: roles/logging.logWriter
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-notebooks.iam.gserviceaccount.com
+  role: roles/notebooks.serviceAgent
+- members:
+  - user:sugumarranganathan54@gmail.com
+  role: roles/owner
+- members:
+  - serviceAccount:service-93864197382@gcp-sa-pubsub.iam.gserviceaccount.com
+  role: roles/pubsub.serviceAgent
+- members:
+  - serviceAccount:service-93864197382@serverless-robot-prod.iam.gserviceaccount.com
+  role: roles/run.serviceAgent
+- members:
+  - serviceAccount:93864197382-compute@developer.gserviceaccount.com
+  role: roles/storage.objectViewer
+etag: BwZY2v7fg8o=
+version: 1
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ 
+
+============
+
+Yes. Replace your entire app.py with the version below. This version removes the gcloud auth print-access-token dependency and uses Application Default Credentials, which works properly in Cloud Run.
+
+from flask import Flask, render_template, request, jsonify
+import requests
+import json
+import google.auth
+from google.auth.transport.requests import Request
+
+
+app = Flask(__name__)
+
+
+# =========================================================
+# BUSINESS CONSULTANT AI - VERTEX AI AGENT ENGINE URL
+# =========================================================
+
+AGENT_URL = (
+    "https://us-west1-aiplatform.googleapis.com/v1/"
+    "projects/93864197382/"
+    "locations/us-west1/"
+    "reasoningEngines/6223438123351670784:streamQuery"
+)
+
+
+# =========================================================
+# HOME PAGE
+# =========================================================
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+# =========================================================
+# GET GOOGLE CLOUD ACCESS TOKEN
+# Works in Cloud Shell and Cloud Run
+# =========================================================
+
+def get_access_token():
+
+    credentials, project = google.auth.default(
+        scopes=[
+            "https://www.googleapis.com/auth/cloud-platform"
+        ]
+    )
+
+    auth_request = Request()
+
+    if not credentials.valid:
+        credentials.refresh(auth_request)
+
+    return credentials.token
+
+
+# =========================================================
+# CHAT API
+# =========================================================
+
+@app.route("/chat", methods=["POST"])
+def chat():
+
+    data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "error": "Invalid request"
+        }), 400
+
+
+    message = data.get("message", "").strip()
+
+
+    if not message:
+        return jsonify({
+            "error": "Please enter a message"
+        }), 400
+
+
+    try:
+
+        # =================================================
+        # GET ACCESS TOKEN
+        # =================================================
+
+        token = get_access_token()
+
+
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+
+
+        # =================================================
+        # AGENT ENGINE PAYLOAD
+        # =================================================
+
+        payload = {
+            "input": {
+                "message": message
+            }
+        }
+
+
+        print("\n========================================")
+        print("SENDING REQUEST TO BUSINESS CONSULTANT AI")
+        print("========================================")
+
+        print("\nAgent URL:")
+        print(AGENT_URL)
+
+        print("\nUser Message:")
+        print(message)
+
+        print("\nPayload:")
+        print(json.dumps(payload, indent=2))
+
+
+        # =================================================
+        # CALL VERTEX AI AGENT ENGINE
+        # =================================================
+
+        response = requests.post(
+            AGENT_URL,
+            headers=headers,
+            json=payload,
+            timeout=120
+        )
+
+
+        print("\n========================================")
+        print("AGENT RESPONSE")
+        print("========================================")
+
+        print("\nStatus Code:")
+        print(response.status_code)
+
+        print("\nRaw Response:")
+        print(response.text)
+
+
+        # =================================================
+        # HANDLE API ERROR
+        # =================================================
+
+        if response.status_code != 200:
+
+            return jsonify({
+                "error": "AI Agent returned an error",
+                "details": response.text
+            }), response.status_code
+
+
+        # =================================================
+        # PARSE RESPONSE
+        # =================================================
+
+        result = response.json()
+
+
+        print("\nParsed Response:")
+        print(result)
+
+
+        ai_response = ""
+
+
+        # =================================================
+        # HANDLE LIST RESPONSE
+        # =================================================
+
+        if isinstance(result, list):
+
+            for item in result:
+
+                if not isinstance(item, dict):
+                    continue
+
+
+                content = item.get(
+                    "content",
+                    {}
+                )
+
+
+                if not isinstance(content, dict):
+                    continue
+
+
+                parts = content.get(
+                    "parts",
+                    []
+                )
+
+
+                for part in parts:
+
+                    if not isinstance(
+                        part,
+                        dict
+                    ):
+                        continue
+
+
+                    text = part.get("text")
+
+
+                    if text:
+                        ai_response += text
+
+
+        # =================================================
+        # HANDLE DICTIONARY RESPONSE
+        # =================================================
+
+        elif isinstance(result, dict):
+
+            content = result.get(
+                "content",
+                {}
+            )
+
+
+            if isinstance(content, dict):
+
+                parts = content.get(
+                    "parts",
+                    []
+                )
+
+
+                for part in parts:
+
+                    if isinstance(
+                        part,
+                        dict
+                    ):
+
+                        text = part.get(
+                            "text"
+                        )
+
+
+                        if text:
+                            ai_response += text
+
+
+        # =================================================
+        # FALLBACK RESPONSE
+        # =================================================
+
+        if not ai_response:
+
+            ai_response = (
+                "Sorry, I received a response "
+                "from the AI Agent, but I could "
+                "not extract the message."
+            )
+
+            print(
+                "\nCould not extract text."
+            )
+
+            print(result)
+
+
+        # =================================================
+        # RETURN RESPONSE TO FRONTEND
+        # =================================================
+
+        return jsonify({
+            "response": ai_response
+        })
+
+
+    # =====================================================
+    # GOOGLE AUTH ERROR
+    # =====================================================
+
+    except google.auth.exceptions.GoogleAuthError as e:
+
+        print("\nGoogle Authentication Error:")
+        print(str(e))
+
+        return jsonify({
+            "error": "Unable to authenticate with Google Cloud",
+            "details": str(e)
+        }), 500
+
+
+    # =====================================================
+    # REQUEST ERROR
+    # =====================================================
+
+    except requests.exceptions.RequestException as e:
+
+        print("\nConnection Error:")
+        print(str(e))
+
+        return jsonify({
+            "error": "Unable to connect to AI Agent",
+            "details": str(e)
+        }), 500
+
+
+    # =====================================================
+    # GENERAL ERROR
+    # =====================================================
+
+    except Exception as e:
+
+        print("\nUnexpected Error:")
+        print(str(e))
+
+        return jsonify({
+            "error": "Unexpected server error",
+            "details": str(e)
+        }), 500
+
+
+# =========================================================
+# LOCAL DEVELOPMENT
+# CLOUD RUN USES GUNICORN
+# =========================================================
+
+if __name__ == "__main__":
+
+    app.run(
+        host="0.0.0.0",
+        port=8080,
+        debug=True
+    )
+Important: update requirements.txt
+
+Your requirements.txt should now be:
+
+flask
+requests
+gunicorn
+google-auth
+
+Because the new app.py uses:
+
+import google.auth
+Then create/update the Procfile
+nano Procfile
+
+Paste:
+
+web: gunicorn --bind 0.0.0.0:$PORT app:app
+
+Save with:
+
+Ctrl + O → Enter → Ctrl + X
+
+Then check:
+
+cat requirements.txt
+
+and:
+
+cat Procfile
+
+After that, we can deploy the Business Consultant AI website to Cloud Run again.
+
+===========
+
+Step 1: Give Artifact Registry permission
+
+Run this exact command:
+
+gcloud projects add-iam-policy-binding project-415b525b-5ad3-4185-aeb \
+  --member="serviceAccount:93864197382-compute@developer.gserviceaccount.com" \
+  --role="roles/artifactregistry.writer"
+
+You already gave this account:
+
+Storage Object Viewer ✅
+Logs Writer ✅
+
+Now we add:
+
+Artifact Registry Writer ✅
+
+This allows the Cloud Build service account to read and push container images.
+
+Step 2: Wait until you see
+Updated IAM policy for project [project-415b525b-5ad3-4185-aeb].
+
+Then deploy again:
+
+gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+
+=========
+
+sugumarranganathan54\@cloudshell:\~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud projects add-iam-policy-binding project-415b525b-5ad3-4185-aeb 
+\--member="serviceAccount:[93864197382-compute@developer.gserviceaccount.com](mailto:93864197382-compute@developer.gserviceaccount.com)" 
+\--role="roles/artifactregistry.writer"
+Updated IAM policy for project [project-415b525b-5ad3-4185-aeb].
+bindings:
+
+- members:
+  - principalSet://agents.global.org-501807723039.system.id.goog/attribute.platformContainer/aiplatform/projects/93864197382
+    role: roles/aiplatform.agentDefaultAccess
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-aiplatform-cc.iam.gserviceaccount.com
+    role: roles/aiplatform.customCodeServiceAgent
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-vertex-eval.iam.gserviceaccount.com
+    role: roles/aiplatform.rapidevalServiceAgent
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-aiplatform-re.iam.gserviceaccount.com
+    role: roles/aiplatform.reasoningEngineServiceAgent
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-aiplatform.iam.gserviceaccount.com
+    role: roles/aiplatform.serviceAgent
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-vertex-telemetry.iam.gserviceaccount.com
+    role: roles/aiplatform.telemetryServiceAgent
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-artifactregistry.iam.gserviceaccount.com
+    role: roles/artifactregistry.serviceAgent
+- members:
+  - serviceAccount:[93864197382-compute@developer.gserviceaccount.com](mailto:93864197382-compute@developer.gserviceaccount.com)
+    role: roles/artifactregistry.writer
+- members:
+  - serviceAccount:[93864197382@cloudbuild.gserviceaccount.com](mailto:93864197382@cloudbuild.gserviceaccount.com)
+    role: roles/cloudbuild.builds.builder
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-cloudbuild.iam.gserviceaccount.com
+    role: roles/cloudbuild.serviceAgent
+- members:
+  - serviceAccount:[93864197382@cloudservices.gserviceaccount.com](mailto:93864197382@cloudservices.gserviceaccount.com)
+    role: roles/compute.instanceGroupManagerServiceAgent
+- members:
+  - serviceAccount\:service-93864197382\@compute-system.iam.gserviceaccount.com
+    role: roles/compute.serviceAgent
+- members:
+  - serviceAccount\:service-93864197382\@containerregistry.iam.gserviceaccount.com
+    role: roles/containerregistry.ServiceAgent
+- members:
+  - serviceAccount:[93864197382-compute@developer.gserviceaccount.com](mailto:93864197382-compute@developer.gserviceaccount.com)
+    role: roles/logging.logWriter
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-notebooks.iam.gserviceaccount.com
+    role: roles/notebooks.serviceAgent
+- members:
+  - user\:sugumarranganathan54\@gmail.com
+    role: roles/owner
+- members:
+  - serviceAccount\:service-93864197382\@gcp-sa-pubsub.iam.gserviceaccount.com
+    role: roles/pubsub.serviceAgent
+- members:
+  - serviceAccount\:service-93864197382\@serverless-robot-prod.iam.gserviceaccount.com
+    role: roles/run.serviceAgent
+- members:
+  - serviceAccount:[93864197382-compute@developer.gserviceaccount.com](mailto:93864197382-compute@developer.gserviceaccount.com)
+    role: roles/storage.objectViewer
+    etag: BwZY2z1ec7E=
+    version: 1
+    sugumarranganathan54\@cloudshell:\~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$
+
+===========
+
+Perfect! ✅ The Artifact Registry permission was added successfully.
+
+Now your Compute service account has:
+
+✅ Storage Object Viewer
+✅ Logs Writer
+✅ Artifact Registry Writer
+Next step: Deploy again
+
+Run exactly:
+
+gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+
+This time, the previous error:
+
+artifactregistry.repositories.downloadArtifacts denied
+
+should be resolved.
+
+If deployment succeeds, you should see something similar to:
+
+Service [business-consultant-ai] revision [...] has been deployed
+Service URL: https://business-consultant-ai-xxxxx-...run.app
+
+Run the deployment command now and send me the complete output.
+
+==========
+
+sugumarranganathan54\@cloudshell:\~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud run deploy business-consultant-ai 
+
+\--source . 
+
+\--region asia-south1 
+
+\--allow-unauthenticated
+
+Building using Buildpacks and deploying container to Cloud Run service [business-consultant-ai] in project [project-415b525b-5ad3-4185-aeb] region [asia-south1]
+
+Building and deploying new service...
+
+Validating configuration...done
+
+Uploading sources...done
+
+Building Container... Logs are available at [ [https://console.cloud.google.com/cloud-build/builds;region=asia-south1/48cf2cdd-71f7-462a-aa82-285605ab05ec?project=93864](https://console.cloud.google.com/cloud-build/builds;region=asia-south1/48cf2cdd-71f7-462a-aa82-285605ab05ec?project=93864)
+
+197382 ]....done
+
+Setting IAM Policy...done
+
+Creating Revision...done
+
+Routing traffic...done
+
+Done.
+
+Service [business-consultant-ai] revision [business-consultant-ai-00001-8t2] has been deployed and is serving 100 percent of traffic.
+
+Service URL: [https://business-consultant-ai-93864197382.asia-south1.run.app](https://business-consultant-ai-93864197382.asia-south1.run.app)
+
+sugumarranganathan54\@cloudshell:\~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$
+
+=============
+
+🎉 Excellent! Your Business Consultant AI website is now successfully deployed publicly.
+
+🌐 Your Live Website
+
+Open Business Consultant AI Agent
+
+✅ Deployment Status
+Cloud Run Service: business-consultant-ai
+Region: asia-south1 (Mumbai)
+Access: Public (--allow-unauthenticated)
+Revision: business-consultant-ai-00001-8t2
+Traffic: 100% serving
+Deployment: Successful 🚀
+Next step
+
+Open the live URL and send a test message such as:
+
+How can AI help a small textile business reduce costs?
+
+If the chatbot returns a response, your complete flow is working:
+
+User → Public Website → Flask → Vertex AI Agent Engine → Gemini AI → Response → Website 🎯
+
+============
+
+Your Cloud Run deployment is successful ✅. The error in the website is now happening inside app.py when /chat is called.
+
+Most likely problem
+
+Your current code uses:
+
+subprocess.check_output(
+    ["gcloud", "auth", "print-access-token"]
+)
+
+❌ The gcloud command is generally not available inside the Cloud Run application container.
+
+Use Google Application Default Credentials (ADC) instead.
+
+1. Replace your complete app.py with this
+from flask import Flask, render_template, request, jsonify
+import requests
+import json
+import google.auth
+from google.auth.transport.requests import Request
+
+app = Flask(__name__)
+
+# Vertex AI Agent Engine URL
+AGENT_URL = (
+    "https://us-west1-aiplatform.googleapis.com/v1/"
+    "projects/93864197382/"
+    "locations/us-west1/"
+    "reasoningEngines/6223438123351670784:streamQuery"
+)
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/chat", methods=["POST"])
+def chat():
+
+    try:
+
+        # Get message from frontend
+        data = request.get_json()
+
+        if not data:
+            return jsonify({
+                "error": "Invalid request"
+            }), 400
+
+        message = data.get("message", "").strip()
+
+        if not message:
+            return jsonify({
+                "error": "Please enter a message"
+            }), 400
+
+
+        # ------------------------------------------------
+        # GET GOOGLE CLOUD CREDENTIALS
+        # Cloud Run automatically provides credentials
+        # ------------------------------------------------
+
+        credentials, project = google.auth.default()
+
+        auth_request = Request()
+
+        credentials.refresh(auth_request)
+
+        token = credentials.token
+
+
+        # ------------------------------------------------
+        # HEADERS
+        # ------------------------------------------------
+
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+
+
+        # ------------------------------------------------
+        # AGENT ENGINE PAYLOAD
+        # ------------------------------------------------
+
+        payload = {
+            "input": {
+                "message": message
+            }
+        }
+
+
+        print("\n================================")
+        print("SENDING REQUEST TO AGENT")
+        print("================================")
+
+        print("\nAgent URL:")
+        print(AGENT_URL)
+
+        print("\nPayload:")
+        print(json.dumps(payload, indent=2))
+
+
+        # ------------------------------------------------
+        # CALL AGENT ENGINE
+        # ------------------------------------------------
+
+        response = requests.post(
+            AGENT_URL,
+            headers=headers,
+            json=payload,
+            timeout=120
+        )
+
+
+        print("\n================================")
+        print("AGENT RESPONSE")
+        print("================================")
+
+        print("Status Code:", response.status_code)
+
+        print("\nRaw Response:")
+        print(response.text)
+
+
+        # ------------------------------------------------
+        # HANDLE ERROR
+        # ------------------------------------------------
+
+        if response.status_code != 200:
+
+            return jsonify({
+                "error": "Agent Engine Error",
+                "details": response.text
+            }), response.status_code
+
+
+        # ------------------------------------------------
+        # PARSE RESPONSE
+        # ------------------------------------------------
+
+        result = response.json()
+
+        print("\nParsed Response:")
+        print(result)
+
+
+        ai_response = ""
+
+
+        # If result is a list
+        if isinstance(result, list):
+
+            for item in result:
+
+                if isinstance(item, dict):
+
+                    content = item.get("content", {})
+
+                    if isinstance(content, dict):
+
+                        parts = content.get("parts", [])
+
+                        for part in parts:
+
+                            if isinstance(part, dict):
+
+                                text = part.get("text")
+
+                                if text:
+                                    ai_response += text
+
+
+        # If result is a dictionary
+        elif isinstance(result, dict):
+
+            content = result.get("content", {})
+
+            if isinstance(content, dict):
+
+                parts = content.get("parts", [])
+
+                for part in parts:
+
+                    if isinstance(part, dict):
+
+                        text = part.get("text")
+
+                        if text:
+                            ai_response += text
+
+
+        # ------------------------------------------------
+        # FALLBACK
+        # ------------------------------------------------
+
+        if not ai_response:
+
+            ai_response = str(result)
+
+
+        return jsonify({
+            "response": ai_response
+        })
+
+
+    except Exception as e:
+
+        print("\n================================")
+        print("ERROR")
+        print("================================")
+
+        print(str(e))
+
+        return jsonify({
+            "error": "Something went wrong",
+            "details": str(e)
+        }), 500
+
+
+if __name__ == "__main__":
+
+    app.run(
+        host="0.0.0.0",
+        port=8080,
+        debug=True
+    )
+2. Update requirements.txt
+
+Open:
+
+nano requirements.txt
+
+Make it:
+
+flask
+requests
+gunicorn
+google-auth
+
+Save:
+
+Ctrl + O
+Enter
+Ctrl + X
+
+--------
+
+3. Deploy again
+gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+
+After deployment, test your chatbot again.
+
+=============
+
+
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+Building using Buildpacks and deploying container to Cloud Run service [business-consultant-ai] in project [project-415b525b-5ad3-4185-aeb] region [asia-south1]
+Building and deploying...                                                                                                                                                
+  Validating configuration...done                                                                                                                                        
+  Uploading sources...done                                                                                                                                               
+  Building Container... Logs are available at [ https://console.cloud.google.com/cloud-build/builds;region=asia-south1/ba88a53b-baae-49f5-ad55-8df4de45d2c0?project=93864
+  197382 ]....done                                                                                                                                                       
+  Setting IAM Policy...done                                                                                                                                              
+  Creating Revision...done                                                                                                                                               
+  Routing traffic...done                                                                                                                                                 
+Done.                                                                                                                                                                    
+Service [business-consultant-ai] revision [business-consultant-ai-00002-tsg] has been deployed and is serving 100 percent of traffic.
+Service URL: https://business-consultant-ai-93864197382.asia-south1.run.app
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ 
+
+=============
+
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ gcloud run deploy business-consultant-ai \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated
+Building using Buildpacks and deploying container to Cloud Run service [business-consultant-ai] in project [project-415b525b-5ad3-4185-aeb] region [asia-south1]
+Building and deploying...                                                                                                                                                
+  Validating configuration...done                                                                                                                                        
+  Uploading sources...done                                                                                                                                               
+  Building Container... Logs are available at [ https://console.cloud.google.com/cloud-build/builds;region=asia-south1/385e1f9b-8bb3-46da-a1c8-83f6d06ba1c1?project=93864
+  197382 ]....done                                                                                                                                                       
+  Setting IAM Policy...done                                                                                                                                              
+  Creating Revision...done                                                                                                                                               
+  Routing traffic...done                                                                                                                                                 
+Done.                                                                                                                                                                    
+Service [business-consultant-ai] revision [business-consultant-ai-00003-h75] has been deployed and is serving 100 percent of traffic.
+Service URL: https://business-consultant-ai-93864197382.asia-south1.run.app
+sugumarranganathan54@cloudshell:~/business-consultant-web (project-415b525b-5ad3-4185-aeb)$ 
+
+
+============
+
+How can I help a small textile business reduce costs?
+Reducing costs is one of the most effective ways for a small textile business to increase its profit margins. By using simple, affordable Artificial Intelligence (AI) tools, a small business can significantly cut down on waste, save time, and make smarter purchasing decisions.
+
+Here is a practical guide on how AI can help a small textile business reduce costs, explained in simple terms.
+
+1. Reduce Fabric Waste with "Smart Cutting" (AI Pattern Nesting)
+Fabric is usually the biggest expense for a textile business. When cutting patterns out of fabric, any leftover scrap is wasted money.
+
+How AI helps: AI-powered "nesting" software acts like a digital game of Tetris. You upload your clothing patterns, and the AI automatically arranges the pieces on the fabric roll in the tightest, most efficient layout possible.
+Practical Example: Instead of a human designer spending an hour trying to arrange patterns (and still wasting 15% of the fabric), the AI does it in seconds and reduces waste to just 5%.
+Actionable Recommendation: Look into affordable digital pattern-making software that includes auto-nesting features (such as Gemini CAD or basic plugins for standard design software).
+2. Cut Down on Physical Samples (Virtual Prototyping)
+Traditionally, textile businesses have to sew, dye, and assemble multiple physical samples of a garment before they get the design right. This wastes fabric, thread, dye, and labor.
+
+How AI helps: 3D design and Generative AI tools allow you to create realistic, 3D digital prototypes of garments. You can see how the fabric drapes, fits, and looks in different colors without cutting a single piece of cloth.
+Practical Example: A small custom clothing brand uses 3D design software (like CLO 3D) to show clients digital mockups. They only sew the final product once the customer approves the digital version, cutting prototyping costs to zero.
+Actionable Recommendation: Use simple AI image generation tools (like Midjourney or Canva's AI) to brainstorm fabric patterns and design concepts before making physical samples.
+3. Avoid Buying Excess Materials (Smart Inventory Forecasting)
+Holding onto rolls of fabric that do not sell ties up cash flow and takes up valuable shelf space.
+
+How AI helps: Modern, low-cost AI inventory tools analyze your past sales, seasonal trends, and even local weather patterns to predict exactly how much material you will need in the coming months.
+Practical Example: Instead of guessing and buying 500 yards of heavy wool for winter, the AI analyzes last year's sales and current trends, advising you to buy only 300 yards. This saves you from having "dead stock" sitting in your warehouse.
+Actionable Recommendation: If you use an e-commerce platform like Shopify, install AI-driven inventory apps (like Inventory Planner or Stocky) to help automate your purchasing decisions.
+4. Save Time on Customer Service & Admin
+Small business owners and their staff often spend hours answering repetitive customer questions (e.g., "Where is my order?", "Do you have this fabric in blue?"). This takes time away from actual production.
+
+How AI helps: A simple AI chatbot on your website can handle up to 80% of common customer questions instantly, 24/7.
+Practical Example: While you are busy operating the sewing machines or dye vats, the AI chatbot is on your website helping a customer track their package or checking fabric availability.
+Actionable Recommendation: Set up a simple, code-free AI customer service chatbot (such as Tidio, ManyChat, or Shopify Inbox) to handle routine inquiries.
+How to Get Started (Action Plan)
+To avoid feeling overwhelmed, do not try to implement all of these tools at once. Follow these three steps:
+
+Identify your biggest cost: Spend one week tracking where you lose the most money. Is it wasted fabric scraps? Unsold inventory? Time spent answering emails?
+Pick one tool: Choose the one AI solution above that targets your biggest cost. For example, if fabric waste is your biggest issue, start by researching basic digital nesting software.
+Run a pilot test: Test the tool on a small scale (e.g., try a 14-day free trial of an inventory app) and measure if it saves you time or money before committing to a paid subscription.
+
+==========
+
+🎉 Excellent! Your Business Consultant AI is now working successfully!
+
+The response you received is a real answer from your Vertex AI Reasoning Engine, which confirms the complete connection is working:
+
+🌐 User Browser
+      ↓
+☁️ Cloud Run
+      ↓
+🐍 Flask Web Application
+      ↓
+🔐 Google Service Account Authentication
+      ↓
+🤖 Vertex AI Reasoning Engine
+      ↓
+🧠 Business Consultant AI Agent
+      ↓
+💬 AI Response
+      ↓
+🌐 Your Website
+
+
+=========
+
+✅ What you successfully fixed
+
+
+| Problem                                    | Status         |
+| ------------------------------------------ | -------------- |
+| Cloud Build Artifact Registry permission   | ✅ Fixed        |
+| Cloud Run deployment                       | ✅ Working      |
+| Service Account configuration              | ✅ Working      |
+| Vertex AI permission                       | ✅ Working      |
+| `aiplatform.reasoningEngines.query` access | ✅ Working      |
+| Gunicorn worker timeout                    | ✅ Fixed        |
+
+========
+
+https://business-consultant-ai-93864197382.asia-south1.run.app/
+
+or 
+
+https://business-consultant-ai-93864197382.asia-south1.run.app?utm_source=chatgpt.com
+
+-----------
+
+
+| Cloud Run → Reasoning Engine connection    | ✅ Working      |
+| AI response displayed in website           | 🎉 **Success** |
+
+
+🏆 Important achievement
+
+You have successfully deployed a real Agentic AI application on Google Cloud.
+
+This is not just a normal static website or simple chatbot. Your project uses:
+
+Flask + Cloud Run + Service Account Authentication + Vertex AI Reasoning Engine + AI Agent
+
+And your AI agent is successfully providing business recommendations.
+
+Congratulations! 🎉👏 Your Business Consultant AI is LIVE and WORKING. 🚀🤖
+
+===========
