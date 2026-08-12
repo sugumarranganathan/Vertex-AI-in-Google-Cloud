@@ -1,0 +1,251 @@
+Agent
+
+Business Consultant AI Agent
+
+Description
+
+Help small businesses understand and use AI.
+
+Instructions
+
+I can see the beginning:
+
+You are a professional Business Consultant AI Agent.
+Your job is to help small businesses understand how they can use Artificial Intelligence.
+
+This is a real agent configuration
+
+===========
+
+At the top center, click:
+
+Preview
+
+This should allow you to test your Business Consultant AI Agent.
+
+Try this prompt:
+
+I own a small textile shop in Chennai. I want to use AI to increase sales, reduce manual work, and improve customer service.
+Analyze my business and give me a practical AI implementation plan with low-cost tools.
+
+========
+
+                    USER
+                      │
+                      ▼
+        BUSINESS CONSULTANT AI AGENT
+                      │
+        ┌─────────────┼─────────────┐
+        ▼             ▼             ▼
+   AI Research     Business       Strategy
+      Agent        Analysis        Agent
+        │             │             │
+        └─────────────┼─────────────┘
+                      ▼
+              FINAL CONSULTANT
+                 REPORT
+
+
+=========
+
+Generated result as follow:
+
+========
+
+Vanakkam! Running a textile shop in Chennai—whether you sell sarees, dress materials, suiting, or ready-made garments—is a busy business. Between managing walk-in customers, handling suppliers, keeping track of inventory, and promoting your products on WhatsApp or Instagram, it is easy to get overwhelmed.
+
+AI does not have to be expensive or complicated. For a small retail shop, AI can act like an unpaid, 24/7 assistant that helps you attract more customers and saves you hours of manual work every day.
+
+Here is a simple, practical, and highly affordable guide on how AI can help your textile business, followed by a 30-day step-by-step plan you can start today.
+
+Part 1: How AI Can Help Your Chennai Textile Shop
+1. Increase Sales with Better Visuals & Smart Marketing
+The Challenge: Taking professional photos of sarees or fabrics on models is expensive and takes time.
+The AI Solution: You can take a simple photo of your fabric or saree on a hanger or table, and use free AI tools to place it on a beautiful background or even on a virtual model.
+Example: A customer on WhatsApp wants to see how a fabric looks when stitched. You can use an AI tool to instantly show a mock-up, helping close the sale faster.
+2. Reduce Manual Work with WhatsApp Automation
+The Challenge: Replying to the same questions ("Is this in stock?", "What is the price?", "Do you ship to Madurai/Coimbatore?") takes hours.
+The AI Solution: Use WhatsApp Business automation. It can automatically send your catalog, answer common questions, and greet customers even when your shop is closed.
+Example: A customer messages you at 10:00 PM. The AI immediately replies with your latest cotton saree catalog and shop location, keeping the lead warm until you open the next morning.
+3. Smarter Inventory Management (No More "Dead Stock")
+The Challenge: Buying too much of a color or fabric that doesn't sell, while running out of fast-moving items.
+The AI Solution: You don’t need complex software. You can paste your basic sales data (from your notebook or bill book) into free AI tools like ChatGPT or Google Gemini to ask which items you should restock for upcoming festivals like Diwali or Pongal.
+Part 2: The 30-Day Low-Cost Implementation Plan
+This plan is designed to cost less than ₹1,500 per month and requires only 30 minutes of your time each day.
+
+Week 1 (Days 1–7): Automate Customer Chats via WhatsApp
+Since most shoppers in Chennai prefer buying and inquiring via WhatsApp, this is your highest priority.
+
+What to do: Download the free WhatsApp Business App (if you haven’t already).
+Use AI Features:
+Set up "Quick Replies" for FAQs (e.g., typing /address instantly sends your shop location and Google Map link).
+Set up an "Away Message" that automatically replies to late-night customer inquiries.
+Upload your top 10 selling textile products to the WhatsApp Catalog feature.
+Cost: ₹0 (Free)
+Time Saved: 1 to 2 hours of manual typing every day.
+Week 2 (Days 8–15): Create Professional Product Photos with AI
+Beautiful photos sell textiles. You do not need a professional photographer.
+
+What to do: Download Canva (a free design app) or use free online AI tools like Photoroom or Pixelcut.
+Use AI Features:
+Take a photo of a saree or dress material under good lighting in your shop.
+Use the AI "Background Remover" to instantly delete your shop’s messy background.
+Replace it with a clean, elegant background (like a wooden table or a festive backdrop) using the AI generator.
+Cost: Free (Paid versions are around ₹400/month if you want advanced features, but the free version is enough to start).
+Result: High-quality, premium-looking photos for your WhatsApp Status and Instagram.
+Week 3 (Days 16–22): Write Marketing Copy & Festival Offers in Seconds
+Stop struggling to think of what to write in your customer broadcast messages.
+
+What to do: Open ChatGPT or Google Gemini (both are completely free on mobile and computer).
+Use AI Features: Type a simple prompt in English or Tamil.
+Example Prompt: "Write a friendly, short WhatsApp broadcast message in Tanglish (Tamil written in English script) inviting ladies in Chennai to visit my shop for our new Aadi Sale cotton saree collection."
+The AI will instantly write a catchy, polite message with emojis that you can copy and paste.
+Cost: ₹0 (Free)
+Result: Professional-sounding promotions created in less than 30 seconds.
+Week 4 (Days 23–30): Predict Your Best Sellers for the Next Month
+Use AI to analyze what your customers actually want.
+
+What to do: Take your sales data from the past month (even a simple list of what sold).
+Use AI Features: Open ChatGPT and type:
+Example Prompt: "I run a textile shop in Chennai. Last month, I sold 40 blue cotton sarees, 15 yellow silk sarees, and 5 green synthetic sarees. 
+Based on South Indian fashion trends and the upcoming festive season, which colors and fabrics should I stock more of for next month?"
+The AI will analyze the trend and give you a logical recommendation on what to buy from your wholesale suppliers.
+Cost: ₹0 (Free)
+Result: Avoid wasting money on stock that won't sell.
+Summary of Actionable Recommendations to Start Today
+Download WhatsApp Business today and list your top 5 products in the catalog.
+Install the Photoroom or Canva app on your phone and try removing the background of one product photo.
+Keep it simple. Do not buy expensive software yet. Use free tools first to build your confidence.
+
+
+==============
+
+Business Consultant AI Agent now has two useful tools enabled:
+
+Google Search 🌐 — for current information and market research
+URL Context 🔗 — for analyzing information from a website URL
+
+This is already a good agentic setup because the agent can use external information instead of relying only on its built-in knowledge.
+
+===============
+
+This test should check whether your agent can:
+
+Understand the business problem
+Use Google Search when needed
+Research current information
+Give practical recommendations
+
+===============
+
+Business Consultant AI Agent is working successfully, and the preview confirms something very important.
+
+✅ What happened in the Preview
+
+Your prompt was:
+
+Research how AI can help textile retail businesses increase sales and reduce manual work...
+
+In the preview, I can see:
+
+Step #2 — GoogleSearchAgent
+Step #3 — GoogleSearchAgent
+
+This confirms your agent actually invoked Google Search while processing the request. 🚀
+
+So your architecture is currently:
+
+====================================
+
+User Question
+      ↓
+Business Consultant AI Agent
+      ↓
+Google Search 🔍
+      ↓
+Google Search 🔍
+      ↓
+Gemini 3.5 Flash 🧠
+      ↓
+Business Recommendation
+
+================================
+
+That means this is no longer just a simple chatbot. It has agentic capability because it can use an external tool to help answer the task.
+
+My evaluation of the response
+🟢 Strengths
+
+The answer is:
+
+Easy to understand
+Well structured
+Relevant to a Chennai textile shop
+Practical for a small business
+Includes a 30-day implementation plan
+Gives actionable steps
+Avoids excessive technical jargon
+
+The Week 1 → Week 4 structure is especially good.
+
+===========
+
+The agent followed your instructions well
+
+Your system instruction said:
+
+Explain concepts in simple English
+Give practical business examples
+Provide actionable recommendations
+Use headings and bullet points
+Avoid unnecessary technical jargon
+Clearly say when it does not know something
+Never invent facts
+
+The response follows points 1–5 very well. ✅
+
+==========
+
+One important improvement needed
+
+Your original prompt specifically asked the agent to:
+
+Research how AI can help textile retail businesses
+
+The response used Google Search, but the final answer does not show sources, links, or citations.
+
+For a professional Business Consultant Agent, I recommend improving the instructions so that when Google Search is used, the agent clearly separates:
+
+Research findings
+General recommendations
+Assumptions
+
+Otherwise, the user cannot easily verify which recommendations came from current web research.
+
+========
+
+I recommend adding these instructions
+
+Add something like this to your agent instructions:
+
+When using Google Search, base time-sensitive or factual claims on the search results. Clearly mention the sources or provide source links when available. Do not present assumptions, predictions, or general recommendations as verified facts.
+
+Also add:
+
+For business recommendations, clearly separate:
+
+Current research findings
+Analysis
+Recommended actions
+Estimated cost, if applicable
+Assumptions and limitations
+
+============
+
+
+
+
+
+
+
+
