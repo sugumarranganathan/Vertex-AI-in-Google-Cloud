@@ -1,0 +1,184 @@
+Yes. Your Business Consultant AI is live, but the monthly cost depends mainly on two different services:
+
+Cloud Run – hosts your website/chat UI in asia-south1 (Mumbai)
+Vertex AI Agent Engine / Reasoning Engine – runs your AI agent in us-west1
+Your likely monthly cost
+
+=====
+
+| Service                    | Your usage              | Estimated cost                    |
+| -------------------------- | ----------------------- | --------------------------------- |
+| **Cloud Run**              | Low traffic website     | **₹0 to ₹200/month**              |
+| **Cloud Build**            | When you deploy updates | Usually **₹0**                    |
+| **Artifact Registry**      | Stores container images | Usually **₹0 / very small**       |
+| **Vertex AI Agent Engine** | Your deployed AI agent  | **This is the important cost**    |
+| **Gemini model usage**     | Every AI conversation   | Depends on number/length of chats |
+
+
+========
+
+Cloud Run has a generous free tier, including 180,000 vCPU-seconds, 360,000 GiB-seconds, and 2 million requests per month for request-based billing. Since your app is a small website and can scale to zero when unused, Cloud Run itself may remain free or very inexpensive at low traffic.
+
+Cloud Build also currently provides 2,500 free build-minutes per billing account each month, so your occasional gcloud run deploy --source . deployments will probably cost nothing unless you deploy very heavily.
+
+⚠️ The main cost is Vertex AI Agent Engine
+
+Your logs show that your Cloud Run app calls this deployed Reasoning Engine:
+
+Region: us-west1
+Reasoning Engine ID: 6223438123351670784
+
+Agent Engine runtime pricing was reduced in December 2025 to approximately:
+
+$0.0864 per vCPU-hour
+$0.009 per GB-hour
+
+There can also be separate charges for sessions, memory, code execution, and the underlying Gemini model usage, depending on which features your agent uses.
+
+Simple example
+
+If your deployed agent effectively consumes resources continuously for a full month, the bill could be much higher than Cloud Run.
+
+For example, assuming 1 vCPU + 1 GB RAM continuously for 30 days:
+
+vCPU: 0.0864 × 720 hours ≈ $62.21
+Memory: 0.009 × 720 hours ≈ $6.48
+
+Estimated: about $68.69/month, roughly ₹5,700–₹6,000/month, plus Gemini/API usage.
+
+⚠️ This is only an illustrative calculation. The actual Agent Engine resource allocation and runtime usage determine your real bill.
+
+My estimate for your current project
+If only you are testing it occasionally:
+
+Approximately ₹0–₹1,000/month is possible if usage is low and the Agent Engine does not continuously consume significant runtime resources.
+
+If the Agent Engine is consuming resources continuously:
+
+Approximately ₹5,000–₹10,000+ per month could be possible, depending on its allocated CPU/memory and Gemini usage.
+
+If many users use your chatbot:
+
+The cost increases based on:
+
+Number of users
+Number of questions
+Length of AI answers
+Gemini model selected
+Agent Engine runtime/resource usage
+Very important: Don't assume Cloud Run is the expensive part
+
+Your architecture is:
+
+User
+  ↓
+Cloud Run Website
+  ↓
+Vertex AI Agent Engine
+  ↓
+Gemini / AI Model
+  ↓
+Response
+
+For your current project, Cloud Run is probably cheap. The biggest cost to monitor is Vertex AI Agent Engine + Gemini usage.
+
+My recommendation
+
+Before leaving this app running for a full month, I recommend checking the actual Google Cloud Billing report for this project. You can see exactly which service is generating charges.
+
+Google Cloud Billing documentation
+
+If you want, I can give you the exact Cloud Shell commands to check your current Agent Engine configuration and calculate a much more accurate monthly cost for your specific deployment.
+
+========
+
+Yes. The Google Cloud page you shared confirms an important point: having a Cloud Billing account does not automatically mean you will be charged a fixed monthly amount. Your cost depends on the actual usage of services behind your Business Consultant AI app.
+
+Your app currently has two main cost areas:
+
+Cloud Run – hosting the Flask/web application.
+Vertex AI Agent Engine / Reasoning Engine – processing the AI questions and generating responses.
+
+I’ll check the current official Google Cloud pricing details and give you a practical monthly estimate for your app.
+
+Your likely monthly cost
+
+For your current Business Consultant AI architecture:
+
+User → Cloud Run website (asia-south1 Mumbai) → Vertex AI Agent Engine / Reasoning Engine (us-west1) → AI model
+
+the important point is:
+
+1. Cloud Run hosting
+
+Your Cloud Run service is pay-per-use and can scale to zero. If you have not configured minimum instances, you generally don't pay for an idle container when nobody is using the app. Cloud Run also has a monthly free tier, including CPU, memory, and requests. Mumbai (asia-south1) is included in Cloud Run's Tier 1 pricing regions.
+
+For a small personal project with low traffic, your Cloud Run cost may be ₹0 or only a few rupees per month.
+
+2. Your bigger cost: Vertex AI Agent Engine
+
+This is the part you should watch carefully.
+
+Your deployed agent is a Reasoning Engine / Vertex AI Agent Engine. Current Agent Engine Runtime pricing was reduced to:
+
+=========
+
+| Resource       |             Current price |
+| -------------- | ------------------------: |
+| Runtime CPU    | **$0.0864 per vCPU-hour** |
+| Runtime Memory |   **$0.0090 per GB-hour** |
+| Sessions       |               Usage-based |
+| Memory Bank    |       Usage-based if used |
+| Code Execution |       Usage-based if used |
+
+
+=======
+
+Google introduced additional charges for Sessions, Memory Bank, and Code Execution beginning in 2026.
+
+Example approximate monthly Agent Engine cost
+
+If your agent uses the equivalent of 1 vCPU + 1 GB memory continuously for 24 hours × 30 days:
+
+CPU: 720 × $0.0864 = $62.21
+Memory: 720 × $0.009 = $6.48
+
+Total ≈ $68.69/month, roughly ₹5,700–₹6,000/month, before any additional model/API usage.
+
+⚠️ But this is only a continuous-runtime example. Your actual cost can be much lower if the Agent Engine is not continuously consuming those resources.
+
+My practical estimate for your current project
+
+========
+
+| Usage level                        | Estimated monthly cost |
+| ---------------------------------- | ---------------------: |
+| Testing / very few users           |          **₹0 – ₹500** |
+| Small public demo                  |      **₹500 – ₹2,000** |
+| Regular users                      |   **₹2,000 – ₹6,000+** |
+| Agent running heavily/continuously |            **₹6,000+** |
+
+
+========
+These are planning estimates, not a guaranteed bill, because the actual cost depends on your Agent Engine runtime behavior, model used, number of questions, response length, sessions, and traffic.
+
+Good news
+
+Your Cloud Run website itself is unlikely to be the expensive part for your current small application. The main service to monitor is Vertex AI Agent Engine / Reasoning Engine. Cloud Run has generous free usage and request-based billing, while Agent Engine has its own runtime and related usage charges.
+
+What I strongly recommend now
+
+Since this is your first live deployment, set a Google Cloud budget alert, for example:
+
+₹500 → warning
+₹1,000 → serious warning
+₹2,000 → maximum budget you are comfortable with
+
+This does not necessarily stop all services automatically, but it helps you detect unexpected spending early. Your Cloud Billing page also provides budget and billing management tools.
+
+For your current learning/demo project, I would recommend setting an initial alert around ₹500 or ₹1,000 per month and checking the actual billing data after a few days of usage. That will give us a much more accurate cost for your exact Business Consultant AI, rather than guessing from generic examples.
+
+I can also guide you step-by-step to create a ₹500 monthly budget alert in your Google Cloud project.
+
+==========
+
