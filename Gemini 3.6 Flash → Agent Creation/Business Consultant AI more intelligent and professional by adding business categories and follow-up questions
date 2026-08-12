@@ -1,0 +1,243 @@
+🎯 Next major step
+
+Now we can make your Business Consultant AI more intelligent and professional by adding business categories and follow-up questions.
+
+For example:
+
+User:
+
+I own a bakery in Chennai. Sales are low.
+
+AI:
+
+Great. To give you a personalized business plan, please answer:
+
+1. What products do you sell?
+Cakes / Pastries / Cookies / Bread
+
+2. Do you currently use WhatsApp Business?
+
+3. What is your approximate monthly sales range?
+
+4. Do you have Instagram or Facebook?
+
+Then your AI can give a customized business growth plan, instead of only a general answer.
+
+Recommended next feature
+
+Let's build:
+
+Step 1 → Business Problem Analysis
+Step 2 → AI asks follow-up questions
+Step 3 → User answers
+Step 4 → AI creates a Personalized AI Business Growth Plan
+Step 5 → Show Action Plan with Priority, Cost, Tools, and Expected Benefit
+
+That will make your project feel much more like a real AI Business Consultant, not just a normal chatbot. 🚀
+
+
+==========
+
+Great 👍 Let’s start the next feature: Personalized AI Business Consultation.
+
+Since your current website and deployed agent are already working, we will not test or deploy again now. We will improve the AI's behavior.
+
+Step 1: Update your AI Agent instructions
+
+Your AI should follow this conversation flow:
+
+User describes business problem
+        ↓
+AI understands the business
+        ↓
+AI asks 3–5 important follow-up questions
+        ↓
+User answers
+        ↓
+AI creates a Personalized Business Growth Plan
+Example
+
+User:
+
+I own a bakery in Chennai. My sales are low.
+
+Instead of immediately giving a long generic answer, the AI should ask:
+
+Great! To create a personalized growth plan, please answer these questions:
+
+1. What are your main products?
+2. What is your approximate monthly sales range?
+3. Do you use WhatsApp Business?
+4. Do you have Instagram or Facebook?
+5. What is your biggest problem: low customers, low repeat orders, marketing, or high costs?
+
+After the user answers, the AI should provide:
+
+| Area             | Personalized Recommendation   |
+| ---------------- | ----------------------------- |
+| Main Problem     | AI analysis                   |
+| Priority         | High / Medium / Low           |
+| AI Tool          | Recommended tool              |
+| Estimated Cost   | Free / Low cost / Paid        |
+| Action           | What to do                    |
+| Expected Benefit | Possible business improvement |
+
+
+==============
+
+Next: Open your deployed agent code
+
+Go to your existing agent project:
+
+cd ~/business_consultant_agent
+
+Then list the files:
+
+ls
+
+Send me the output of ls. Then I will tell you exactly which file to open and give you the updated agent instruction code step by step.
+
+======
+
+Yes 👍 You are now in the correct project folder:
+
+~/business_consultant_agent
+
+Your files are:
+
+agent.py
+deploy.py
+__init__.py
+requirements.txt
+pycache/
+Next step: show me your agent.py
+
+In Cloud Shell, type:
+
+cat agent.py
+
+Then copy the complete output and paste it here.
+
+I will check your agent code and give you the exact next step to connect/deploy it properly.
+
+=======
+
+perfectly working agent.py as follows:
+------------
+
+
+from functools import cached_property
+
+from google.adk.agents import LlmAgent
+from google.adk.models import Gemini
+from google.genai import Client
+from google.adk.tools import agent_tool
+from google.adk.tools.google_search_tool import GoogleSearchTool
+from google.adk.tools import url_context
+
+
+
+class GlobalGemini(Gemini):
+  """Pins the Vertex AI client to the `global` location.
+
+  gemini-3 series models are only served from `global`; the default ADK
+  `Gemini` integration constructs a `google.genai.Client` whose location
+  defaults to the AgentEngine instance's region (e.g. `us-central1`) and
+  fails with model-not-found for these models. Subclassing per the override
+  pattern documented on `google.adk.models.google_llm.Gemini` lets the agent
+  keep running in its regional AgentEngine instance while routing the model
+  request to the global endpoint.
+  """
+
+  @cached_property
+  def api_client(self) -> Client:
+    return Client(vertexai=True, location="global")
+
+
+business_consultant_ai_agent_google_search_agent = LlmAgent(
+  name='Business_Consultant_AI_Agent_google_search_agent',
+  model=GlobalGemini(model='gemini-3.5-flash'),
+  description=(
+      'Agent specialized in performing Google searches.'
+  ),
+  sub_agents=[],
+  instruction='Use the GoogleSearchTool to find information on the web.',
+  tools=[
+    GoogleSearchTool()
+  ],
+)
+business_consultant_ai_agent_url_context_agent = LlmAgent(
+  name='Business_Consultant_AI_Agent_url_context_agent',
+  model=GlobalGemini(model='gemini-3.5-flash'),
+  description=(
+      'Agent specialized in fetching content from URLs.'
+  ),
+  sub_agents=[],
+  instruction='Use the UrlContextTool to retrieve content from provided URLs.',
+  tools=[
+    url_context
+  ],
+)
+root_agent = LlmAgent(
+  name='Business_Consultant_AI_Agent',
+  model=GlobalGemini(model='gemini-3.5-flash'),
+  description=(
+      'Help small businesses understand and use AI.'
+  ),
+  sub_agents=[],
+  instruction='You are a professional Business Consultant AI Agent.\n\nYour job is to help small businesses understand how they can use Artificial Intelligence.\n\nAlways:\n1. Explain concepts in simple English.\n2. Give practical business examples.\n3. Provide actionable recommendations.\n4. Use clear headings and bullet points.\n5. Avoid unnecessary technical jargon.\n6. If you do not know something, clearly say so.\n7. Never invent facts or business information.',
+  tools=[
+    agent_tool.AgentTool(agent=business_consultant_ai_agent_google_search_agent),
+    agent_tool.AgentTool(agent=business_consultant_ai_agent_url_context_agent)
+  ],
+)
+
+
+=================
+
+working deploy.py as follows:
+
+----------------------------
+
+import vertexai
+from vertexai.agent_engines import AdkApp
+
+from agent import root_agent
+
+PROJECT_ID = "project-415b525b-5ad3-4185-aeb"
+LOCATION = "asia-south1"
+STAGING_BUCKET = "gs://business-consultant-agent-415b525b"
+
+client = vertexai.Client(
+    project=PROJECT_ID,
+    location=LOCATION,
+)
+
+app = AdkApp(
+    agent=root_agent,
+)
+
+remote_agent = client.agent_engines.create(
+    agent=app,
+    config={
+        "display_name": "Business Consultant AI Agent",
+        "staging_bucket": STAGING_BUCKET,
+        "requirements": [
+            "google-cloud-aiplatform[agent_engines,adk]>=1.112.0",
+            "google-adk",
+            "cloudpickle",
+            "pydantic>=2.6.4",
+        ],
+    },
+)
+
+print("\n========================================")
+print("DEPLOYMENT SUCCESSFUL")
+print("========================================")
+print("Resource name:")
+print(remote_agent.api_resource.name)
+
+
+===============
+
+
