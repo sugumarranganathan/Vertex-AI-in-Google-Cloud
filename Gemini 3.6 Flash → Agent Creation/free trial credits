@@ -1,0 +1,55 @@
+Yes — if your Google Cloud project is still using free trial credits, your current usage charges can be deducted from those credits first, instead of being billed directly to your payment method. But there are a few important conditions to check.
+
+Correct 👍 If your billing account is still a Google Cloud Free Trial account, then the situation is much safer than my earlier answer suggested.
+
+For your current app
+
+You have:
+
+$300 free Google Cloud credit
+Valid for 90 days from your Free Trial signup
+Google says you aren't billed during the Free Trial
+Your Cloud Run and eligible Vertex AI usage can consume the free credit
+If you do not manually upgrade to a paid account, Google says you will not automatically be charged when the trial ends or the credit is exhausted. Instead, the trial billing account closes and the associated resources are stopped.
+
+So, for example:
+
+Current credit: $300
+
+Cloud Run usage        ┐
+Vertex AI Agent usage  │ → deducted from your $300 credit
+Other eligible usage   ┘
+
+Remaining credit → $299, $298, etc.
+Important distinction
+
+Free Trial ≠ everything is permanently free.
+
+Your Business Consultant AI can use your $300 trial credit for eligible services. When the 90 days expire or the $300 credit is exhausted, if you haven't upgraded to paid billing, Google stops the trial resources rather than automatically charging you.
+
+What you should do now
+
+Open your Google Cloud Billing page and check these two values:
+
+Remaining credit
+Days remaining
+
+You should see whether your billing account says:
+
+Free trial account
+
+Google specifically states that the Billing Overview shows your remaining credit and remaining days.
+
+So for now: you do not necessarily need to pay ₹5,000–₹6,000 per month. That earlier figure was only an example of possible paid usage and should not be interpreted as your current monthly bill.
+
+Your current app is live, and its eligible costs should come out of your $300 free trial credit while the trial remains active.
+
+You can check your current credit here:
+
+Google Cloud Billing Overview
+
+If you send me a screenshot of your Billing Overview page showing the remaining credit and days, I can tell you exactly what your current situation is.
+
+====
+
+
