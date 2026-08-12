@@ -42,3 +42,18 @@ It simply creates a running deployment of your agent in Google Cloud. Access and
 
 ===========
 
+Display name: Business Consultant AI Agent
+Description: Help small businesses understand and use AI.
+Region: us-west1
+What you should do now
+
+You can keep all these values as they are for this first deployment.
+
+Then click the blue Deploy button at the bottom-right.
+
+⏳ It says deployment can take approximately 2–5 minutes.
+
+=============
+
+
+
