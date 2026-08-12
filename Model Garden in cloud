@@ -1,0 +1,29 @@
+Google Cloud Model Garden is like a library or marketplace of AI models inside Vertex AI.
+
+In your screenshot, you are seeing Gemma 2 inside Model Garden.
+
+Simple example
+
+Think of it like this:
+
+Google Cloud Vertex AI = 🏢 AI Platform
+Model Garden = 🌳 Collection of AI models
+Gemma 2 / Gemini / Claude / Llama = 🤖 Individual AI models
+
+In Model Garden, you can explore and use different models for tasks such as:
+
+💬 Chatbots
+🤖 AI Agents
+🖼️ Image generation
+📝 Text generation
+📊 Data analysis
+🔍 Embeddings and RAG
+🎙️ Speech and audio
+
+For example, you can select a model such as Gemma, then click Deploy model and use it in your application.
+
+So, in one line:
+
+Model Garden is Google Cloud's place to discover, test, deploy, and use different AI models through Vertex AI.
+
+That is why in your Google Cloud screenshot you are seeing Gemma 2, and earlier you may also see models such as Claude—Model Garden can provide access to multiple AI model families.
