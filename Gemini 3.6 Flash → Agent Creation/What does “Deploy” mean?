@@ -1,0 +1,44 @@
+What does “Deploy” mean?
+
+Right now, your AI agent is in the development/testing stage inside Google Cloud Agent Platform Studio.
+
+Before Deploy
+You → Agent Platform Studio → Test your AI Agent
+
+Only you are currently testing and configuring it.
+
+==========
+
+After Deploy 🚀
+User / Application
+        ↓
+Google Cloud Agent Platform
+        ↓
+Your Business Consultant AI Agent
+        ↓
+Gemini + Google Search + Tools
+        ↓
+Business Analysis & Recommendations
+
+Deploying means publishing/running your agent as a cloud service so it can be used outside this testing screen.
+
+=========
+
+Later, you can connect it to:
+
+🌐 Your website
+💬 A chatbot application
+📱 Mobile app
+🐍 Python application
+🔌 API
+🤖 Other AI agents / multi-agent systems
+
+========
+
+Deploy does NOT mean your agent becomes publicly visible automatically
+
+It simply creates a running deployment of your agent in Google Cloud. Access and integration depend on the deployment settings and how you use the generated code/API.
+
+
+===========
+
