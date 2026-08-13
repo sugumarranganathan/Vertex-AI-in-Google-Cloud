@@ -1,0 +1,56 @@
+What is a Pipeline?
+
+A pipeline is a series of steps arranged in order to complete a task.
+
+Simple real-life example: Making tea ☕
+Water
+  ↓
+Boil Water
+  ↓
+Add Tea Powder
+  ↓
+Add Milk & Sugar
+  ↓
+Filter
+  ↓
+Tea Ready ☕
+
+This complete sequence is called a pipeline.
+
+==========
+
+Pipeline in AI / Machine Learning
+
+For example, suppose you want to build a Bakery Sales Prediction AI:
+
+📊 Sales Data
+      ↓
+🧹 Clean the Data
+      ↓
+🔄 Prepare / Transform Data
+      ↓
+🧠 Train the Model
+      ↓
+📈 Evaluate the Model
+      ↓
+🚀 Deploy the Model
+
+This sequence is an ML Pipeline.
+
+========
+
+Each step depends on the previous step
+
+For example:
+
+Step 1 → Collect Data
+Step 2 → Clean Data
+Step 3 → Train Model
+Step 4 → Test Model
+Step 5 → Deploy Model
+Simple definition
+
+Pipeline = A sequence of connected steps that automatically process work from start to finish.
+
+========
+
