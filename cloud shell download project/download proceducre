@@ -1,0 +1,29 @@
+Method 1 — Easiest: Download from Cloud Shell ☁️ → 💻
+Step 1: In Cloud Shell, go to the parent folder
+
+You are currently inside:
+
+~/business_consultant_agent
+
+Run:
+
+cd ~
+Step 2: Compress the project into one ZIP file
+zip -r business_consultant_agent.zip business_consultant_agent
+
+This creates:
+
+business_consultant_agent.zip
+Step 3: Download the ZIP
+
+In the Google Cloud Shell terminal, click the ⋮ (More) menu and choose:
+
+Download
+
+in Cloud Shell run:
+
+cloudshell download ~/business_consultant_agent.zip
+
+========
+
+  
