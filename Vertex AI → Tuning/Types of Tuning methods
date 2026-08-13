@@ -1,0 +1,166 @@
+Vertex AI → Tuning has two options:
+
+1. Managed Tuning 🤖
+
+Google manages most of the tuning process for you.
+
+You mainly provide:
+
+A base model
+Your training examples
+Basic configuration
+
+Then Vertex AI handles much of the infrastructure and tuning process.
+
+======
+
+Example: Bakery Assistant
+
+Suppose you want an AI to always give answers in your bakery's style.
+
+Training examples:
+
+Input:
+
+How can I increase cake sales?
+
+Expected Output:
+
+Promote birthday cake combos, offer pre-order discounts, and use WhatsApp marketing.
+
+Input:
+
+How can I reduce food waste?
+
+Expected Output:
+
+Track daily sales and prepare production quantities based on demand.
+
+You provide many such examples.
+
+Your Training Data
+        ↓
+Managed Tuning
+        ↓
+Google manages tuning process
+        ↓
+Tuned Model
+        ↓
+Your Bakery AI
+Simple meaning
+
+You give the data → Google does most of the tuning work.
+
+
+
+======
+
+
+2. Custom Tuning ⚙️
+
+With Custom Tuning, you have more control over the tuning process.
+
+You can control things such as:
+
+Training configuration
+Hyperparameters
+Learning rate
+Number of training steps/epochs
+Other model training settings
+Your Training Data
+        ↓
+You configure training settings
+        ↓
+Custom Tuning
+        ↓
+You control more parameters
+        ↓
+Tuned Model
+Example
+
+Suppose you are building a specialized Textile Quality AI.
+
+You have thousands of examples:
+
+Fabric Image/Data → Defect Type
+─────────────────────────────────
+Example 1 → Hole
+Example 2 → Stain
+Example 3 → Color Variation
+Example 4 → Thread Defect
+
+You may want more control over how the model learns from this data.
+
+So you use Custom Tuning.
+
+You give the data + configure more training settings → Google runs the infrastructure.
+
+========
+Imagine you want to customize a cake 🎂.
+
+|             | Managed Tuning               | Custom Tuning                |
+| ----------- | ---------------------------- | ---------------------------- |
+| Your role   | Give requirements            | Control more details         |
+| Bakery role | Does most of the work        | You specify exact settings   |
+| Difficulty  | Easier                       | More advanced                |
+| Control     | Less                         | More                         |
+| Best for    | Beginners / common use cases | Advanced / specialized needs |
+
+
+=========
+
+Cake example
+
+Managed Tuning:
+
+"I want a chocolate birthday cake."
+
+The baker decides many of the technical details.
+
+Custom Tuning:
+
+"Use 500g flour, 200g chocolate, bake at this temperature, and follow these specific settings."
+
+You have much more control.
+
+=======
+
+or your Business Consultant AI
+
+Currently, you likely do not need fine-tuning just to make it answer business questions.
+
+Your current approach can be:
+
+User Question
+      ↓
+Gemini / Vertex AI Agent
+      ↓
+Instructions / System Prompt
+      ↓
+Business Advice
+
+Fine-tuning becomes useful when you have a large number of high-quality examples and want the model to consistently learn a particular behavior, style, format, or specialized task.
+
+==========
+
+Simple final difference
+MANAGED TUNING
+Your Data
+   ↓
+Google manages most of the tuning
+   ↓
+Tuned Model
+CUSTOM TUNING
+Your Data
+   +
+More control over training settings
+   ↓
+Custom Training / Tuning
+   ↓
+Tuned Model
+
+Managed Tuning = Easier, Google handles more.
+Custom Tuning = More control, more advanced configuration.
+
+==========
+
