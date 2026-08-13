@@ -1,0 +1,9 @@
+| Error              | Meaning                          | Important?   | Action                  |
+| ------------------ | -------------------------------- | ------------ | ----------------------- |
+| `404 /favicon.ico` | Website icon not found           | ❌ Usually no | Ignore or add favicon   |
+| `404 /some-page`   | Requested page/API doesn't exist | ⚠️ Yes       | Check URL/route         |
+| `500 /chat`        | Backend crashed or failed        | 🔴 Yes       | Check backend logs/code |
+| `200`              | Success                          | ✅            | Nothing                 |
+
+==========
+
