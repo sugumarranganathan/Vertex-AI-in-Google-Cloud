@@ -1,0 +1,49 @@
+What is JSON format?
+
+JSON stands for:
+
+JavaScript Object Notation
+
+It is a simple text format used to store and exchange data between applications.
+
+Example
+{
+  "name": "Sugumar",
+  "business": "AI Consultant",
+  "city": "Chennai"
+}
+
+Here:
+
+"name" = Key
+"Sugumar" = Value
+
+So the structure is:
+
+{
+  "Key": "Value"
+}
+
+=================
+
+What is JSONL format?
+
+JSONL stands for:
+
+JSON Lines
+
+It contains one JSON object per line.
+
+Example JSONL file
+{"name":"Sugumar","business":"AI Consultant"}
+{"name":"Ravi","business":"Bakery Owner"}
+{"name":"Priya","business":"Textile Shop Owner"}
+
+Each line is a separate JSON record.
+
+============
+
+
+Gemma 2 fine-tuning, JSONL is commonly useful because each line can represent one training example.
+
+======
