@@ -1,0 +1,50 @@
+JSON vs JSONL
+
+| Feature        | JSON                       | JSONL                               |
+| -------------- | -------------------------- | ----------------------------------- |
+| Full form      | JavaScript Object Notation | JSON Lines                          |
+| Structure      | One complete JSON document | One JSON object per line            |
+| Best for       | Small/structured data      | Large datasets and AI training data |
+| File extension | `.json`                    | `.jsonl`                            |
+| Example        | One big object/array       | Many separate JSON records          |
+
+
+===========
+
+Simple visual example
+
+JSON:
+
+[
+  {
+    "question": "How to increase bakery sales?",
+    "answer": "Use social media marketing."
+  },
+  {
+    "question": "How to reduce food waste?",
+    "answer": "Analyze daily sales."
+  }
+]
+
+==========
+
+JSONL:
+
+{"question":"How to increase bakery sales?","answer":"Use social media marketing."}
+{"question":"How to reduce food waste?","answer":"Analyze daily sales."}
+
+========
+
+Easy memory trick 🧠
+JSON  = One complete data document
+
+JSONL = JSON
+        JSON
+        JSON
+        Each JSON on a separate Line
+
+==========
+
+Gemma 2 fine-tuning, JSONL is commonly useful because each line can represent one training example.
+
+===========
