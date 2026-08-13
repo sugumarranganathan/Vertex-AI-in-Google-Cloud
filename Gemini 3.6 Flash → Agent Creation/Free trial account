@@ -1,0 +1,55 @@
+28,411 rs free trial for 88 days remaining, before that I cancel it my gpay account means, I don't to pay is it correct?
+
+Yes — if your Google Cloud Billing Overview clearly says “Free trial account” and you do not click “Upgrade,” you normally will not be charged after the free trial ends.
+
+From your screenshot:
+
+Remaining credit: approximately ₹28,411
+Remaining time: 88 days
+Status: Free trial
+
+Google says that during a Free Trial, your usage is covered by the trial credit and you are not billed. You are billed if you upgrade to a paid account.
+
+Your situation
+NOW
+
+₹28,411 Free Trial Credit
+        +
+88 Days Remaining
+        ↓
+Use eligible Google Cloud services
+        ↓
+Do NOT click "Upgrade"
+        ↓
+Trial ends
+        ↓
+Resources stop / billing is disabled
+        ↓
+No automatic paid usage
+
+Google's current documentation says that if you don't upgrade, the Free Trial billing account closes when the trial ends or the trial credit is exhausted, and the associated resources are stopped.
+
+About removing/cancelling GPay
+
+You do not need to remove or cancel your GPay/payment method just to avoid charges during a genuine Google Cloud Free Trial. The important thing is do not upgrade the Cloud Billing account to Paid.
+
+However, do not simply remove the payment method without checking your billing account status first. Your screenshot should be checked under:
+
+Google Cloud Console → Billing → Overview
+
+Look for:
+
+Billing account type/status: Free trial
+
+If it says Paid, that is different.
+
+My recommendation
+
+Before the 88 days end:
+
+Check that you have not clicked Upgrade.
+Delete or stop any resources you no longer need, such as deployed Agent Engine resources or storage resources.
+Go to Billing and confirm the account status is Free trial.
+If you want to completely stop the trial early, you can close the Free Trial billing account. Google states that closing the billing account stops billable services and prevents further charges.
+
+So, based on the screenshot you showed: if you remain on the Free Trial and do not upgrade to Paid, Google Cloud should not automatically start charging you when the 88 days finish.
