@@ -1,0 +1,67 @@
+Step 1️⃣
+Prepare Training Data
+        │
+        ▼
+input.jsonl
+        │
+        ▼
+Step 2️⃣
+Upload to Google Cloud Storage
+        │
+        ▼
+🪣 finetuningdatasetbucket
+        │
+        ▼
+Step 3️⃣
+Vertex AI Fine-Tuning Job
+        │
+        ├── Read input.jsonl
+        │
+        ├── Train / Fine-Tune Gemma Model
+        │
+        └── Use evaluation.jsonl
+        │
+        ▼
+Step 4️⃣
+🧠 Fine-Tuned Model
+
+
+=======
+
+🏠 Simple Real-Life Example
+
+Imagine you are opening a school.
+
+| Real Life          | Fine-Tuning                 |
+| ------------------ | --------------------------- |
+| 🏫 School          | Vertex AI                   |
+| 👨‍🏫 Teacher      | Fine-tuning process         |
+| 📚 Books           | `input.jsonl` training data |
+| 📝 Exam paper      | `evaluation.jsonl`          |
+| 🗄️ Storage room   | **Cloud Storage Bucket**    |
+| 🎓 Trained student | Fine-tuned model            |
+
+
+=======
+
+
+So:
+
+🪣 BUCKET = Storage Place
+
+📄 input.jsonl = Training Material
+
+📄 evaluation.jsonl = Test Material
+
+🧠 Gemma = Model being trained
+
+☁️ Vertex AI = Platform that performs the fine-tuning
+One-line memory trick 🧠
+
+Cloud Storage Bucket is the cloud container that stores your AI training and evaluation data so Vertex AI can access it during the fine-tuning process.
+
+For your screenshot:
+
+finetuningdatasetbucket → Your storage location for the Gemma fine-tuning dataset and related fine-tuning files.
+
+========
