@@ -1,0 +1,93 @@
+🤖 Managed Tuning
+Your Data → Google manages more → Tuned Model
+
+⚙️ Custom Tuning
+Your Data + More Configuration → You control more → Tuned Model
+
+========
+
+Managed Tuning vs Custom Tuning
+
+| Feature                      | 🤖 Managed Tuning                 | ⚙️ Custom Tuning                           |
+| ---------------------------- | --------------------------------- | ------------------------------------------ |
+| **Who manages the process?** | Google manages most of it         | You have more control                      |
+| **Difficulty**               | Easier                            | More advanced                              |
+| **Configuration**            | Simple/basic                      | Detailed configuration                     |
+| **Hyperparameters**          | Mostly managed or limited control | More control over settings                 |
+| **Best for**                 | Beginners and standard use cases  | Advanced and specialized use cases         |
+| **Your work**                | Provide data and requirements     | Provide data + configure training settings |
+| **Control**                  | Less                              | More                                       |
+
+
+=======
+
+🤖 Managed Tuning
+Training Examples
+       ↓
+Google / Vertex AI manages tuning
+       ↓
+Tuned Model
+Example
+
+You give Vertex AI 1,000 business consulting examples:
+
+Input:
+
+How can I increase bakery sales?
+
+Expected Output:
+
+Use WhatsApp marketing, combo offers, and loyalty programs.
+
+You provide the examples, and Vertex AI handles most of the tuning process.
+
+👉 Easy option.
+
+======
+
+⚙️ Custom Tuning
+Training Examples
+       +
+Your Training Settings
+       ↓
+Custom Tuning
+       ↓
+Tuned Model
+
+You may have more control over settings such as:
+
+Learning rate
+Training steps
+Other hyperparameters
+Training configuration
+Example
+
+Suppose you are building a highly specialized AI for textile manufacturing and have thousands of carefully prepared examples. 
+You want to experiment with different training configurations to achieve better performance.
+
+👉 More control, but more advanced.
+
+
+=========
+
+🎂 Simple Cake Example
+Managed Tuning
+
+You tell the baker:
+
+“Make me a chocolate birthday cake.”
+
+The baker handles most of the details.
+
+Custom Tuning
+
+You tell the baker:
+
+“Use these exact ingredients, quantities, temperature, and preparation settings.”
+
+You control many more details.
+
+======
+
+
+
