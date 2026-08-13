@@ -1,0 +1,21 @@
+Routing vs Sequential vs Hierarchical
+
+| Arrangement         | Meaning                           | Example                                     |
+| ------------------- | --------------------------------- | ------------------------------------------- |
+| **🌳 Hierarchical** | One main agent manages sub-agents | Main Agent → Sales/Marketing/Finance Agents |
+| **➡️ Sequential**   | Agents work one after another     | Research → Analysis → Report                |
+| **🚦 Routing**      | Request goes to the correct agent | Sales Question → Sales Agent                |
+
+
+========
+
+Easy memory trick 🧠
+🌳 Hierarchical = Who manages whom
+
+➡️ Sequential = What happens next
+
+🚦 Routing = Where should this request go?
+
+In simple words: Routing = Selecting the correct path or agent for a particular task.
+
+======
